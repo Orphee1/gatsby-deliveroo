@@ -1,12 +1,96 @@
 import React from "react"
-import { Link } from "gatsby"
+import { graphql } from "gatsby"
+import { Hero, Layout } from "../components"
 
-import Layout from "../components/layout"
+const Home = ({ data }) => {
+  //   console.log(data)
+  const { contentfulRestaurant: restau } = data
+  console.log(restau)
 
-const Home = () => (
-  <Layout>
-    <h1>Hello from Home</h1>
-  </Layout>
-)
+  return (
+    <Layout>
+      <Hero restau={restau} />
+    </Layout>
+  )
+}
 
 export default Home
+export const query = graphql`
+  {
+    contentfulRestaurant {
+      title
+      foodNationality
+      meal
+      rate
+      freeDelivery
+      location {
+        location
+      }
+      info {
+        info
+      }
+      image {
+        fluid {
+          ...GatsbyContentfulFluid
+        }
+      }
+      schedule
+      sector
+      offers
+      burger {
+        id
+        image {
+          fixed {
+            ...GatsbyContentfulFixed
+          }
+        }
+        popular
+        price
+        recipe {
+          recipe
+        }
+        slug
+        title
+      }
+      desserts {
+        id
+        image {
+          fixed {
+            ...GatsbyContentfulFixed
+          }
+        }
+        price
+        recipe {
+          recipe
+        }
+        slug
+        title
+      }
+      petiteFaim {
+        id
+        image {
+          fixed {
+            ...GatsbyContentfulFixed
+          }
+        }
+        price
+        slug
+        title
+        recipe {
+          recipe
+        }
+      }
+      softs {
+        id
+        image {
+          fixed {
+            ...GatsbyContentfulFixed
+          }
+        }
+        price
+        slug
+        title
+      }
+    }
+  }
+`

@@ -1,0 +1,5 @@
+// ...GatsbyImageSharpFluid
+// ...GatsbyImageSharpFixed
+
+// ...GatsbyContentfulFluid
+// ...GatsbyContentfulFixed
