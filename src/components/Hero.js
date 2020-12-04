@@ -10,16 +10,12 @@ import delivery from "../images/delivery.png"
 
 const Hero = ({ restau }) => {
   const {
-    burger,
-    desserts,
     foodNationality,
     freeDelivery,
     image,
     info,
     location,
     meal,
-    offers,
-    petiteFaim,
     rate,
     schedule,
     sector,
