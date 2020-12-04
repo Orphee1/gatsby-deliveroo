@@ -22,7 +22,7 @@ export const query = graphql`
       productsOffers {
         name
         icon {
-          fixed {
+          fixed(width: 20) {
             ...GatsbyContentfulFixed
           }
         }
@@ -30,7 +30,7 @@ export const query = graphql`
           ... on ContentfulBurger {
             id
             image {
-              fixed {
+              fixed(width: 110, height: 110) {
                 ...GatsbyContentfulFixed
               }
             }
@@ -45,7 +45,7 @@ export const query = graphql`
           ... on ContentfulDesserts {
             id
             image {
-              fixed {
+              fixed(width: 110, height: 110) {
                 ...GatsbyContentfulFixed
               }
             }
@@ -59,7 +59,7 @@ export const query = graphql`
           ... on ContentfulPetiteFaim {
             id
             image {
-              fixed {
+              fixed(width: 110, height: 110) {
                 ...GatsbyContentfulFixed
               }
             }
@@ -73,7 +73,7 @@ export const query = graphql`
           ... on ContentfulSofts {
             id
             image {
-              fixed {
+              fixed(width: 110, height: 110) {
                 ...GatsbyContentfulFixed
               }
             }
