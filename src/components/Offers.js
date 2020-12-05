@@ -45,12 +45,7 @@ const Offers = ({ offers }) => {
                 {products.map(product => {
                   //   console.log(product)
                   return (
-                    <Card
-                      key={product.id}
-                      {...product}
-                      toggle={toggleModal}
-                      onClick={toggleModal}
-                    />
+                    <Card key={product.id} {...product} onClick={toggleModal} />
                   )
                 })}
               </div>

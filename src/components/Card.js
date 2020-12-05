@@ -3,9 +3,9 @@ import styled from "styled-components"
 import Image from "gatsby-image"
 import { FaStar } from "react-icons/fa"
 
-const Card = ({ image, popular, price, recipe, title, toggle }) => {
+const Card = ({ image, popular, price, recipe, title }) => {
   return (
-    <Wrapper onClick={toggle}>
+    <Wrapper>
       <div className="info">
         <h3>{title}</h3>
 

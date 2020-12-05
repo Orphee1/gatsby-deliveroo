@@ -167,8 +167,7 @@ const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
     overflow: scroll;
-    /* overflow: auto; */
-    height: 90vh;
+    height: auto;
     flex-shrink: 0;
   }
 
