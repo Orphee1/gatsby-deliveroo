@@ -44,50 +44,50 @@ const Modal = ({ toggle }) => {
             </p>
           </div>
         </div>
-        {slug.indexOf("burger") !== -1 && (
-          <div className="add-container">
-            <div className="sup-title">
-              <h3>Suppléments</h3>
-              <p>Ajoutez des suppléments à votre burger!</p>
-            </div>
-            <div className="sup-item">
-              <span>Steack de boeuf haché 120g</span>
-              <span>(+3,50 €)</span>
-            </div>
-            <div className="sup-item">
-              <span>Bacon fumé</span>
-              <span>(+1,50 €)</span>
-            </div>
-            <div className="sup-item">
-              <span>Oeuf</span>
-              <span>(+1,50 €)</span>
-            </div>
-            <div className="sup-item">
-              <span>Cheddar</span>
-              <span>(+1,50 €)</span>
-            </div>
-            <div className="sup-item">
-              <span>Raclette</span>
-              <span>(+1,50 €)</span>
-            </div>
-            <div className="sup-item">
-              <span>Reblochon</span>
-              <span>(+1,50 €)</span>
-            </div>
-            <div className="sup-item">
-              <span>Camembert</span>
-              <span>(+1,50 €)</span>
-            </div>
-            <div className="sup-item">
-              <span>Chèvre</span>
-              <span>(+1,50 €)</span>
-            </div>
-            <div className="sup-item">
-              <span>Rösti de pommes de terre</span>
-              <span>(+1,50 €)</span>
-            </div>
+
+        <div className="add-container">
+          <div className="sup-title">
+            <h3>Suppléments</h3>
+            <p>Ajoutez des suppléments à votre burger!</p>
           </div>
-        )}
+          <div className="sup-item">
+            <span>Steack de boeuf haché 120g</span>
+            <span>(+3,50 €)</span>
+          </div>
+          <div className="sup-item">
+            <span>Bacon fumé</span>
+            <span>(+1,50 €)</span>
+          </div>
+          <div className="sup-item">
+            <span>Oeuf</span>
+            <span>(+1,50 €)</span>
+          </div>
+          <div className="sup-item">
+            <span>Cheddar</span>
+            <span>(+1,50 €)</span>
+          </div>
+          <div className="sup-item">
+            <span>Raclette</span>
+            <span>(+1,50 €)</span>
+          </div>
+          <div className="sup-item">
+            <span>Reblochon</span>
+            <span>(+1,50 €)</span>
+          </div>
+          <div className="sup-item">
+            <span>Camembert</span>
+            <span>(+1,50 €)</span>
+          </div>
+          <div className="sup-item">
+            <span>Chèvre</span>
+            <span>(+1,50 €)</span>
+          </div>
+          <div className="sup-item">
+            <span>Rösti de pommes de terre</span>
+            <span>(+1,50 €)</span>
+          </div>
+        </div>
+
         <div className="counter">
           <button
             onClick={() => {
@@ -110,7 +110,7 @@ const Modal = ({ toggle }) => {
       </section>
 
       <footer className="bottom">
-        <button className="btn">{price.toFixed(2)} €</button>
+        <button className="btn">{parseInt(price).toFixed(2)} €</button>
         <button className="btn" onClick={toggle}>
           Annuler
         </button>
