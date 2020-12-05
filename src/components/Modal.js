@@ -29,7 +29,7 @@ const Modal = ({ toggle }) => {
       childImageSharp: { fluid },
     },
   } = data
-  console.log(fluid)
+
   return (
     <Wrapper className="yellow">
       <header className="top-title">
@@ -117,6 +117,7 @@ const Modal = ({ toggle }) => {
           </button>
         </div>
       </section>
+
       <footer className="bottom">
         <button className="btn">Total 11,00€</button>
         <button className="btn" onClick={toggle}>
@@ -168,7 +169,6 @@ const Wrapper = styled.section`
     flex-direction: column;
     overflow: scroll;
     height: auto;
-    flex-shrink: 0;
   }
 
   .img-container {
@@ -209,7 +209,7 @@ const Wrapper = styled.section`
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 29vh;
+    padding-bottom: 29vh;
     span {
       color: var(--clr-black);
       font-weight: bold;
@@ -227,7 +227,7 @@ const Wrapper = styled.section`
   }
 
   .bottom {
-    opacity: 1;
+    /* opacity: 0; */
     position: absolute;
     bottom: 0;
     background: var(--clr-white);
