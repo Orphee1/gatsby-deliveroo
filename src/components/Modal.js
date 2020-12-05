@@ -1,20 +1,128 @@
 import React from "react"
 import styled from "styled-components"
-import { MdClose } from "react-icons/md"
+import {
+  AiOutlineExclamationCircle,
+  FiMinusCircle,
+  FiPlusCircle,
+  MdClose,
+} from "react-icons/all"
+import { useStaticQuery, graphql } from "gatsby"
+import Image from "gatsby-image"
 
-const Modal = () => {
+const query = graphql`
+  {
+    file(relativePath: { eq: "burger1.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`
+
+const Modal = ({ toggle }) => {
+  const [counter, setCounter] = React.useState(0)
+  const data = useStaticQuery(query)
+  const {
+    file: {
+      childImageSharp: { fluid },
+    },
+  } = data
+  console.log(fluid)
   return (
-    <Wrapper className="show-modal">
-      <div className="top-title">
-        <h2>Bic Mac</h2>
-        <button className="toggle-btn">
+    <Wrapper className="yellow">
+      <header className="top-title">
+        <h3>Bic Mac</h3>
+        <button className="toggle-btn" onClick={toggle}>
           <MdClose fontSize="2rem" style={{ color: "#00ccbb" }} />
         </button>
-      </div>
-      <div className="bottom">
-        <button className="total">Total 11,00€</button>
-        <button className="cancel">Annuler</button>
-      </div>
+      </header>
+      <section className="modal-content">
+        <div className="img-container">
+          <Image fluid={fluid} />
+        </div>
+        <div className="info-container">
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Distinctio, illum temporibus? Accusantium magnam, d
+          </p>
+          <div className="alert">
+            <AiOutlineExclamationCircle
+              fontSize="1rem"
+              style={{ color: "#2e3333", marginRight: "0.5rem" }}
+            />
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
+          </div>
+        </div>
+        <div className="add-container">
+          <div className="sup-title">
+            <h3>Suppléments</h3>
+            <p>Ajoutez des suppléments à votre burger!</p>
+          </div>
+          <div className="sup-item">
+            <span>Steack de boeuf haché 120g</span>
+            <span>(+3,50 €)</span>
+          </div>
+          <div className="sup-item">
+            <span>Bacon fumé</span>
+            <span>(+1,50 €)</span>
+          </div>
+          <div className="sup-item">
+            <span>Oeuf</span>
+            <span>(+1,50 €)</span>
+          </div>
+          <div className="sup-item">
+            <span>Cheddar</span>
+            <span>(+1,50 €)</span>
+          </div>
+          <div className="sup-item">
+            <span>Raclette</span>
+            <span>(+1,50 €)</span>
+          </div>
+          <div className="sup-item">
+            <span>Reblochon</span>
+            <span>(+1,50 €)</span>
+          </div>
+          <div className="sup-item">
+            <span>Camembert</span>
+            <span>(+1,50 €)</span>
+          </div>
+          <div className="sup-item">
+            <span>Chèvre</span>
+            <span>(+1,50 €)</span>
+          </div>
+          <div className="sup-item">
+            <span>Rösti de pommes de terre</span>
+            <span>(+1,50 €)</span>
+          </div>
+        </div>
+        <div className="counter">
+          <button
+            onClick={() => {
+              if (counter > 0) {
+                setCounter(counter - 1)
+              }
+            }}
+          >
+            <FiMinusCircle />
+          </button>
+          <span>{counter}</span>
+          <button
+            onClick={() => {
+              setCounter(counter + 1)
+            }}
+          >
+            <FiPlusCircle />
+          </button>
+        </div>
+      </section>
+      <footer className="bottom">
+        <button className="btn">Total 11,00€</button>
+        <button className="btn" onClick={toggle}>
+          Annuler
+        </button>
+      </footer>
     </Wrapper>
   )
 }
@@ -22,35 +130,131 @@ const Modal = () => {
 export default Modal
 
 const Wrapper = styled.section`
+  position: fixed;
+  top: 0;
   width: 100%;
   height: 100%;
   background: var(--clr-white);
   display: flex;
   flex-direction: column;
+  align-items: center;
   z-index: 1000;
-  opacity: 0;
-  .show-modal {
-    opacity: 1;
-  }
-
   .top-title {
     width: 100%;
     height: 5rem;
-    position: relative;
     border-bottom: 1px solid var(--cl-grey-5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
     h3 {
-      font-weight: bold;
+      font-weight: 700;
       color: var(--clr-black);
     }
   }
   .toggle-btn {
     position: absolute;
     top: 10;
-    right: 10;
+    right: 4.75%;
+    top: 2.75%;
+    font-size: 2.5rem;
+    background: transparent;
+    border-color: transparent;
+    cursor: pointer;
   }
-  .bottom {
+
+  .modal-content {
     display: flex;
     flex-direction: column;
+    overflow: scroll;
+    /* overflow: auto; */
+    height: 90vh;
+    flex-shrink: 0;
+  }
+
+  .img-container {
+    width: 90%;
+    margin: 1rem auto;
+  }
+  .info-container {
+    width: 90%;
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .alert {
+    display: flex;
+    align-items: baseline;
+  }
+  .add-container {
+    width: 90%;
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    span {
+      color: var(--cl-grey-2);
+      font-size: 1.2rem;
+    }
+  }
+  .sup-item {
+    width: 100%;
+    margin: 0.5rem auto;
+    display: flex;
+    justify-content: space-between;
+  }
+  .counter {
+    width: 50%;
+    margin: 0.5rem auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 29vh;
+    span {
+      color: var(--clr-black);
+      font-weight: bold;
+      font-size: 2.1rem;
+    }
+    button {
+      color: var(--clr-turq);
+      font-weight: bold;
+      font-size: 2rem;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      outline: none;
+    }
+  }
+
+  .bottom {
+    opacity: 1;
+    position: absolute;
+    bottom: 0;
+    background: var(--clr-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 24vh;
+    border-top: 1px solid var(--cl-grey-5);
+    padding: 0.5rem 0 1rem 0;
+    /* -webkit-box-shadow: 0px -1px 4px 0px rgba(0, 0, 0, 0.47);
+    box-shadow: 0px -1px 4px 0px rgba(0, 0, 0, 0.47); */
+    button {
+      width: 90%;
+      height: 4.6rem;
+      color: var(--clr-white);
+      background: var(--clr-turq);
+      display: flex;
+      justify-content: center;
+      margin: 0.5rem auto;
+    }
+    button:nth-child(2) {
+      color: var(--clr-turq);
+      background: var(--clr-white);
+    }
   }
 
   @media screen and (min-width: 810px) {

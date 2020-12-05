@@ -17,6 +17,9 @@ const Wrapper = styled.aside`
   width: 100%;
   height: 15rem;
   background: var(--clr-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   @media screen and (min-width: 810px) {
   }

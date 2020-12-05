@@ -1,10 +1,15 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import Image from "gatsby-image"
 import { Card, Cart, Modal } from "./index"
 
 const Offers = ({ offers }) => {
   //   console.log(offers)
+  const [isModalOpen, setIsModalOpen] = useState(true)
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen)
+  }
+
   return (
     <Wrapper>
       <div className="middle">
@@ -39,14 +44,23 @@ const Offers = ({ offers }) => {
               <div className="card-container">
                 {products.map(product => {
                   //   console.log(product)
-                  return <Card {...product} key={product.id} />
+                  return (
+                    <Card key={product.id} {...product} toggle={toggleModal} />
+                  )
                 })}
               </div>
             </article>
           )
         })}
-        {/* <Cart className="show-cart" /> */}
       </section>
+      <div
+        className={`modal-container ${isModalOpen && "show-modal-container"}`}
+      >
+        <Modal toggle={toggleModal} />
+      </div>
+      {/* <div className="cart-container show-cart-container">
+        <Cart />
+      </div> */}
     </Wrapper>
   )
 }
@@ -91,7 +105,7 @@ const Wrapper = styled.section`
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin-top: 5rem;
+    margin-top: 4rem;
   }
   .offer {
     width: 100%;
@@ -119,8 +133,19 @@ const Wrapper = styled.section`
     width: 100%;
   }
 
-  .show-cart {
+  .cart-container {
     display: none;
+  }
+
+  .show-cart-container {
+    display: block;
+  }
+
+  .modal-container {
+    display: none;
+  }
+  .show-modal-container {
+    display: block;
   }
   @media screen and (min-width: 810px) {
     display: grid;
@@ -148,13 +173,13 @@ const Wrapper = styled.section`
       display: flex;
       flex-wrap: wrap;
     }
-    .show-cart {
-      /* opacity: 1; */
-      grid-row: 2/3;
+    .cart-container {
+      display: flex;
+      z-index: 1000;
       grid-column: 3/4;
-      /* align-self: flex-start; */
-      /* position: sticky; */
-      /* top: 2; */
+      grid-row: 2/3;
+      position: sticky;
+      top: 0;
     }
   }
 `
