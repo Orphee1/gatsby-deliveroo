@@ -1,11 +1,34 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import Image from "gatsby-image"
 import { FaStar } from "react-icons/fa"
+import { GatsbyContext } from "../context/context"
 
-const Card = ({ image, popular, price, recipe, title, toggle }) => {
+const Card = ({
+  fixedImage,
+  image,
+  popular,
+  price,
+  recipe,
+  slug,
+  title,
+  toggle,
+}) => {
+  const globalData = useContext(GatsbyContext)
+  const { setProduct } = globalData
   return (
-    <Wrapper onClick={toggle}>
+    <Wrapper
+      onClick={() => {
+        toggle()
+        setProduct({
+          image: image,
+          price: price,
+          recipe: recipe,
+          slug: slug,
+          title: title,
+        })
+      }}
+    >
       <div className="info">
         <h3>{title}</h3>
 
@@ -36,7 +59,8 @@ const Card = ({ image, popular, price, recipe, title, toggle }) => {
           )}
         </div>
       </div>
-      {image && <Image fixed={image.fixed} />}
+
+      {fixedImage && <Image fixed={fixedImage.fixed} />}
     </Wrapper>
   )
 }
@@ -78,6 +102,11 @@ const Wrapper = styled.button`
       font-size: 1.4rem;
       color: var(--cl-grey-6);
     }
+  }
+  .image-container {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
   }
   @media screen and (min-width: 810px) {
     flex: 0 0 26rem;

@@ -6,7 +6,6 @@ import { Card, Cart, Modal } from "./index"
 const Offers = ({ offers }) => {
   //   console.log(offers)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  //   const [product, setProduct] = useState("")
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen)
@@ -32,13 +31,14 @@ const Offers = ({ offers }) => {
       </div>
       <section className="offers-container">
         {offers.map((offer, index) => {
-          const { icon, name, pitch, products } = offer
+          //   console.log(offer)
+          const { bigIcon, name, pitch, products } = offer
           //   console.log(products)
           return (
             <article className="offer" key={index}>
               <div className="header">
                 <div className="offer-title">
-                  <Image fixed={icon.fixed} />
+                  <Image fixed={bigIcon.fixed} />
                   <h2>{name}</h2>
                 </div>
                 {pitch && <p>{pitch.pitch}</p>}
@@ -126,7 +126,7 @@ const Wrapper = styled.section`
 
   .offer-title {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     h2 {
       margin-left: 0.5rem;
     }

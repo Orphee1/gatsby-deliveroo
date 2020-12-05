@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import {
   AiOutlineExclamationCircle,
@@ -6,97 +6,88 @@ import {
   FiPlusCircle,
   MdClose,
 } from "react-icons/all"
-import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
-
-const query = graphql`
-  {
-    file(relativePath: { eq: "burger1.jpg" }) {
-      childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  }
-`
+import { GatsbyContext } from "../context/context"
 
 const Modal = ({ toggle }) => {
+  const globalData = useContext(GatsbyContext)
   const [counter, setCounter] = React.useState(0)
-  const data = useStaticQuery(query)
+  console.log(globalData)
   const {
-    file: {
-      childImageSharp: { fluid },
-    },
-  } = data
-
+    product: { image, price, recipe, slug, title },
+  } = globalData
   return (
     <Wrapper className="yellow">
       <header className="top-title">
-        <h3>Bic Mac</h3>
+        <h3>{title}</h3>
         <button className="toggle-btn" onClick={toggle}>
           <MdClose fontSize="2rem" style={{ color: "#00ccbb" }} />
         </button>
       </header>
       <section className="modal-content">
-        <div className="img-container">
-          <Image fluid={fluid} />
-        </div>
+        {image && (
+          <div className="img-container">
+            <Image fluid={image.fluid} />
+          </div>
+        )}
+
         <div className="info-container">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Distinctio, illum temporibus? Accusantium magnam, d
-          </p>
+          {recipe && <p>{recipe.recipe}</p>}
+
           <div className="alert">
             <AiOutlineExclamationCircle
               fontSize="1rem"
               style={{ color: "#2e3333", marginRight: "0.5rem" }}
             />
-            <p>Lorem ipsum dolor sit amet consectetur.</p>
+            <p>
+              Offre valable uniquement sur le plat de base, hors suppléments
+            </p>
           </div>
         </div>
-        <div className="add-container">
-          <div className="sup-title">
-            <h3>Suppléments</h3>
-            <p>Ajoutez des suppléments à votre burger!</p>
+        {slug.indexOf("burger") !== -1 && (
+          <div className="add-container">
+            <div className="sup-title">
+              <h3>Suppléments</h3>
+              <p>Ajoutez des suppléments à votre burger!</p>
+            </div>
+            <div className="sup-item">
+              <span>Steack de boeuf haché 120g</span>
+              <span>(+3,50 €)</span>
+            </div>
+            <div className="sup-item">
+              <span>Bacon fumé</span>
+              <span>(+1,50 €)</span>
+            </div>
+            <div className="sup-item">
+              <span>Oeuf</span>
+              <span>(+1,50 €)</span>
+            </div>
+            <div className="sup-item">
+              <span>Cheddar</span>
+              <span>(+1,50 €)</span>
+            </div>
+            <div className="sup-item">
+              <span>Raclette</span>
+              <span>(+1,50 €)</span>
+            </div>
+            <div className="sup-item">
+              <span>Reblochon</span>
+              <span>(+1,50 €)</span>
+            </div>
+            <div className="sup-item">
+              <span>Camembert</span>
+              <span>(+1,50 €)</span>
+            </div>
+            <div className="sup-item">
+              <span>Chèvre</span>
+              <span>(+1,50 €)</span>
+            </div>
+            <div className="sup-item">
+              <span>Rösti de pommes de terre</span>
+              <span>(+1,50 €)</span>
+            </div>
           </div>
-          <div className="sup-item">
-            <span>Steack de boeuf haché 120g</span>
-            <span>(+3,50 €)</span>
-          </div>
-          <div className="sup-item">
-            <span>Bacon fumé</span>
-            <span>(+1,50 €)</span>
-          </div>
-          <div className="sup-item">
-            <span>Oeuf</span>
-            <span>(+1,50 €)</span>
-          </div>
-          <div className="sup-item">
-            <span>Cheddar</span>
-            <span>(+1,50 €)</span>
-          </div>
-          <div className="sup-item">
-            <span>Raclette</span>
-            <span>(+1,50 €)</span>
-          </div>
-          <div className="sup-item">
-            <span>Reblochon</span>
-            <span>(+1,50 €)</span>
-          </div>
-          <div className="sup-item">
-            <span>Camembert</span>
-            <span>(+1,50 €)</span>
-          </div>
-          <div className="sup-item">
-            <span>Chèvre</span>
-            <span>(+1,50 €)</span>
-          </div>
-          <div className="sup-item">
-            <span>Rösti de pommes de terre</span>
-            <span>(+1,50 €)</span>
-          </div>
-        </div>
+        )}
         <div className="counter">
           <button
             onClick={() => {
@@ -119,7 +110,7 @@ const Modal = ({ toggle }) => {
       </section>
 
       <footer className="bottom">
-        <button className="btn">Total 11,00€</button>
+        <button className="btn">{price.toFixed(2)} €</button>
         <button className="btn" onClick={toggle}>
           Annuler
         </button>
