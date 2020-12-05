@@ -214,7 +214,7 @@ const Wrapper = styled.section`
       grid-row: 4/6;
       width: 100%;
       padding: 0;
-      /* align-self: flex-start; */
+      border: none;
     }
   }
 `

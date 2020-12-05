@@ -3,12 +3,12 @@ import styled from "styled-components"
 import Image from "gatsby-image"
 import { FaStar } from "react-icons/fa"
 
-const Card = ({ product }) => {
-  const { image, popular, price, recipe, title } = product
+const Card = ({ image, popular, price, recipe, title }) => {
   return (
     <Wrapper>
       <div className="info">
         <h3>{title}</h3>
+
         {recipe && <p>{recipe.recipe}</p>}
 
         <div className="price">
@@ -80,5 +80,7 @@ const Wrapper = styled.button`
     }
   }
   @media screen and (min-width: 810px) {
+    flex: 0 0 26rem;
+    margin: 0.5rem;
   }
 `

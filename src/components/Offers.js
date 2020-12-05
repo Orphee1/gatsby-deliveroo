@@ -1,30 +1,32 @@
 import React from "react"
 import styled from "styled-components"
 import Image from "gatsby-image"
-import { Card } from "./index"
+import { Card, Cart, Modal } from "./index"
 
 const Offers = ({ offers }) => {
   //   console.log(offers)
   return (
     <Wrapper>
       <div className="middle">
-        <span style={{ color: "#00ccbb", flexShrink: "0", margin: "0 1rem" }}>
-          BURGER PARFAIT
-        </span>
-        {offers.map((offer, index) => {
-          const { icon, name } = offer
-          return (
-            <div className="icon-offer" key={index}>
-              <Image fixed={icon.fixed} />
-              <span>{name}</span>
-            </div>
-          )
-        })}
+        <div className="middle-box">
+          <span style={{ color: "#00ccbb", flexShrink: "0", margin: "0 1rem" }}>
+            BURGER PARFAIT
+          </span>
+          {offers.map((offer, index) => {
+            const { icon, name } = offer
+            return (
+              <div className="icon-offer" key={index}>
+                <Image fixed={icon.fixed} />
+                <span>{name}</span>
+              </div>
+            )
+          })}
+        </div>
       </div>
       <section className="offers-container">
         {offers.map((offer, index) => {
-          //   console.log(offer)
           const { icon, name, pitch, products } = offer
+          //   console.log(products)
           return (
             <article className="offer" key={index}>
               <div className="header">
@@ -36,13 +38,14 @@ const Offers = ({ offers }) => {
               </div>
               <div className="card-container">
                 {products.map(product => {
-                  console.log(product)
-                  return <Card product={product} key={product.id} />
+                  //   console.log(product)
+                  return <Card {...product} key={product.id} />
                 })}
               </div>
             </article>
           )
         })}
+        {/* <Cart className="show-cart" /> */}
       </section>
     </Wrapper>
   )
@@ -54,11 +57,20 @@ const Wrapper = styled.section`
   width: 100%;
   height: auto;
   background: var(--clr-grey-4);
+  position: relative;
   .middle {
     width: 100%;
-    height: 5rem;
+    height: 4rem;
     border-top: 1px solid var(--cl-grey-5);
     background: var(--clr-white);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  .middle-box {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -105,9 +117,44 @@ const Wrapper = styled.section`
   }
   .card-container {
     width: 100%;
-    display: flex;
-    flex-direction: column;
+  }
+
+  .show-cart {
+    display: none;
   }
   @media screen and (min-width: 810px) {
+    display: grid;
+    grid-template-columns: 5vw 60vw 30vw 5vw;
+    grid-column-gap: 0.3rem;
+    grid-template-rows: 4rem auto;
+    position: relative;
+    .middle {
+      grid-column: 1/5;
+      grid-row: 1/2;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    .middle-box {
+      margin-left: 10vw;
+    }
+    .offers-container {
+      grid-column: 2/3;
+      grid-row: 2/3;
+    }
+    .offer {
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .show-cart {
+      /* opacity: 1; */
+      grid-row: 2/3;
+      grid-column: 3/4;
+      /* align-self: flex-start; */
+      /* position: sticky; */
+      /* top: 2; */
+    }
   }
 `
