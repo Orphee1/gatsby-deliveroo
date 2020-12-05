@@ -5,7 +5,7 @@ import { Card, Cart, Modal } from "./index"
 
 const Offers = ({ offers }) => {
   //   console.log(offers)
-  const [isModalOpen, setIsModalOpen] = useState(true)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen)
   }
@@ -45,7 +45,12 @@ const Offers = ({ offers }) => {
                 {products.map(product => {
                   //   console.log(product)
                   return (
-                    <Card key={product.id} {...product} toggle={toggleModal} />
+                    <Card
+                      key={product.id}
+                      {...product}
+                      toggle={toggleModal}
+                      onClick={toggleModal}
+                    />
                   )
                 })}
               </div>
