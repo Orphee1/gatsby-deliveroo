@@ -24,11 +24,11 @@ const Cart = () => {
           <section className="cartFull">
             <button className="btn">Valider mon panier</button>
             <div className="container">
-              {cart.map(item => {
+              {cart.map((item, index) => {
                 // console.log(item)
                 const { id, title, price, quantity } = item
                 return (
-                  <div className="sub-container" key={id}>
+                  <div className="sub-container" key={index}>
                     <StateCounter
                       addProduct={addProduct}
                       removeProduct={removeProduct}

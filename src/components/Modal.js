@@ -41,6 +41,10 @@ const Modal = ({ toggleModal }) => {
 
   console.log(subTotal)
 
+  React.useEffect(() => {
+    setCounter(0)
+  }, [toggleModal])
+
   return (
     <Wrapper className="">
       <header className="top-title">
