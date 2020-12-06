@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 
 import styled from "styled-components"
 import {
@@ -8,22 +8,45 @@ import {
   MdClose,
 } from "react-icons/all"
 import Image from "gatsby-image"
-import image_missing from "../images"
 import { GatsbyContext } from "../context/context"
 
 const Modal = ({ toggle }) => {
   const globalData = useContext(GatsbyContext)
   const [counter, setCounter] = React.useState(0)
-  console.log(globalData)
+  //   console.log(globalData)
   const {
-    product: { image, price, recipe, slug, title },
+    addProduct,
+    calculSubTotal,
+    product: { id, image, price, recipe, slug, title },
+    removeProduct,
   } = globalData
+
+  let subTotal = calculSubTotal()
+
+  //   useEffect(() => {
+  //     console.log("addProduct fired on Modal render")
+  //     addProduct({
+  //       title: title,
+  //       price: price,
+  //       id: id,
+  //     })
+  //   }, [])
 
   return (
     <Wrapper className="yellow">
       <header className="top-title">
         <h3>{title}</h3>
-        <button className="toggle-btn" onClick={toggle}>
+        <button
+          className="toggle-btn"
+          onClick={() => {
+            //     removeProduct({
+            //       title: title,
+            //       price: price,
+            //       id: id,
+            //     })
+            toggle()
+          }}
+        >
           <MdClose fontSize="2rem" style={{ color: "#00ccbb" }} />
         </button>
       </header>
@@ -91,6 +114,11 @@ const Modal = ({ toggle }) => {
             onClick={() => {
               if (counter > 0) {
                 setCounter(counter - 1)
+                removeProduct({
+                  title: title,
+                  price: price,
+                  id: id,
+                })
               }
             }}
           >
@@ -100,6 +128,11 @@ const Modal = ({ toggle }) => {
           <button
             onClick={() => {
               setCounter(counter + 1)
+              addProduct({
+                title: title,
+                price: price,
+                id: id,
+              })
             }}
           >
             <FiPlusCircle />
@@ -108,8 +141,20 @@ const Modal = ({ toggle }) => {
       </section>
 
       <footer className="bottom">
-        <button className="btn">{parseInt(price).toFixed(2)} €</button>
-        <button className="btn" onClick={toggle}>
+        {/* <button className="btn">{price.toFixed(2)} €</button> */}
+        <button className="btn">{subTotal.toFixed(2)} €</button>
+
+        <button
+          className="btn"
+          onClick={() => {
+            removeProduct({
+              title: title,
+              price: price,
+              id: id,
+            })
+            toggle()
+          }}
+        >
           Annuler
         </button>
       </footer>
