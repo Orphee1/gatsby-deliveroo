@@ -22,14 +22,14 @@ const query = graphql`
   }
 `
 
-const Modal = ({ toggle }) => {
+const Modal = ({ toggle, isModalOpen }) => {
   const { file } = useStaticQuery(query)
   const {
     childImageSharp: { fluid },
   } = file
   const missing = fluid
   const globalData = useContext(GatsbyContext)
-  const [counter, setCounter] = React.useState(0)
+  const [counter, setCounter] = React.useState(1)
   //   console.log(globalData)
 
   const {
@@ -42,19 +42,29 @@ const Modal = ({ toggle }) => {
   let subTotal = calculSubTotal()
 
   //   useEffect(() => {
-  //     console.log("addProduct fired on Modal render")
+  //     console.log("addProduct fired on on useEffect")
   //     addProduct({
   //       title: title,
   //       price: price,
   //       id: id,
   //     })
-  //   }, [])
+  //   }, [title, price, id])
 
   return (
     <Wrapper className="yellow">
       <header className="top-title">
         <h3>{title}</h3>
-        <button className="toggle-btn" onClick={toggle}>
+        <button
+          className="toggle-btn"
+          onClick={() => {
+            removeProduct({
+              title: title,
+              price: price,
+              id: id,
+            })
+            toggle()
+          }}
+        >
           <MdClose fontSize="2rem" style={{ color: "#00ccbb" }} />
         </button>
       </header>
@@ -157,8 +167,19 @@ const Modal = ({ toggle }) => {
       </section>
 
       <footer className="bottom">
-        {/* <button className="btn">{price.toFixed(2)} €</button> */}
-        <button className="btn">{subTotal.toFixed(2)} €</button>
+        <button
+          className="btn"
+          onClick={() => {
+            addProduct({
+              title: title,
+              price: price,
+              id: id,
+            })
+            toggle()
+          }}
+        >
+          Total {subTotal.toFixed(2)} €
+        </button>
 
         <button
           className="btn"

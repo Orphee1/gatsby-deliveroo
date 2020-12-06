@@ -58,7 +58,7 @@ const Offers = ({ offers }) => {
       <div
         className={`modal-container ${isModalOpen && "show-modal-container"}`}
       >
-        <Modal toggle={toggleModal} />
+        <Modal toggle={toggleModal} isModalOpen={isModalOpen} />
       </div>
       {/* <div className="cart-container show-cart-container">
         <Cart />

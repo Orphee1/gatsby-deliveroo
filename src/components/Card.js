@@ -17,7 +17,7 @@ const Card = ({
   toggle,
 }) => {
   const globalData = useContext(GatsbyContext)
-  const { setProduct } = globalData
+  const { addProduct, setProduct } = globalData
   return (
     <Wrapper
       onClick={() => {
@@ -26,9 +26,6 @@ const Card = ({
           id: id,
           image: image,
           price: price,
-          recipe: recipe,
-          slug: slug,
-          title: title,
         })
       }}
     >
@@ -39,7 +36,7 @@ const Card = ({
         {type && <p>{type}</p>}
 
         <div className="price">
-          <p>{parseInt(price).toFixed(2)} €</p>
+          <p>{price.toFixed(2)} €</p>
           {popular && (
             <>
               <FaStar

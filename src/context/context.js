@@ -40,7 +40,7 @@ const GatsbyProvider = ({ children }) => {
 
   const calculSubTotal = () => {
     let result = 0
-    for (let i = 0; i < cart.length; i++) {
+    for (let i = 1; i < cart.length; i++) {
       if (cart.length === 0) {
         return 0
       }
