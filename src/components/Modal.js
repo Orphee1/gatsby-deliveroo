@@ -1,4 +1,5 @@
 import React, { useContext } from "react"
+
 import styled from "styled-components"
 import {
   AiOutlineExclamationCircle,
@@ -7,6 +8,7 @@ import {
   MdClose,
 } from "react-icons/all"
 import Image from "gatsby-image"
+import image_missing from "../images"
 import { GatsbyContext } from "../context/context"
 
 const Modal = ({ toggle }) => {
@@ -16,6 +18,7 @@ const Modal = ({ toggle }) => {
   const {
     product: { image, price, recipe, slug, title },
   } = globalData
+
   return (
     <Wrapper className="yellow">
       <header className="top-title">
@@ -30,63 +33,58 @@ const Modal = ({ toggle }) => {
             <Image fluid={image.fluid} />
           </div>
         )}
-
-        <div className="info-container">
-          {recipe && <p>{recipe.recipe}</p>}
-
-          <div className="alert">
-            <AiOutlineExclamationCircle
-              fontSize="1rem"
-              style={{ color: "#2e3333", marginRight: "0.5rem" }}
-            />
-            <p>
-              Offre valable uniquement sur le plat de base, hors suppléments
-            </p>
-          </div>
+        <div className="alert">
+          <AiOutlineExclamationCircle
+            fontSize="1rem"
+            style={{ color: "#2e3333", marginRight: "0.5rem" }}
+          />
+          <p>Offre valable uniquement sur le plat de base, hors suppléments</p>
         </div>
-
-        <div className="add-container">
-          <div className="sup-title">
-            <h3>Suppléments</h3>
-            <p>Ajoutez des suppléments à votre burger!</p>
+        <div className="info-container">{recipe && <p>{recipe.recipe}</p>}</div>
+        {slug && slug.indexOf("burger") !== -1 && (
+          <div className="add-container">
+            <div className="sup-title">
+              <h3>Suppléments</h3>
+              <p>Ajoutez des suppléments à votre burger!</p>
+            </div>
+            <div className="sup-item">
+              <span>Steack de boeuf haché 120g</span>
+              <span>(+3,50 €)</span>
+            </div>
+            <div className="sup-item">
+              <span>Bacon fumé</span>
+              <span>(+1,50 €)</span>
+            </div>
+            <div className="sup-item">
+              <span>Oeuf</span>
+              <span>(+1,50 €)</span>
+            </div>
+            <div className="sup-item">
+              <span>Cheddar</span>
+              <span>(+1,50 €)</span>
+            </div>
+            <div className="sup-item">
+              <span>Raclette</span>
+              <span>(+1,50 €)</span>
+            </div>
+            <div className="sup-item">
+              <span>Reblochon</span>
+              <span>(+1,50 €)</span>
+            </div>
+            <div className="sup-item">
+              <span>Camembert</span>
+              <span>(+1,50 €)</span>
+            </div>
+            <div className="sup-item">
+              <span>Chèvre</span>
+              <span>(+1,50 €)</span>
+            </div>
+            <div className="sup-item">
+              <span>Rösti de pommes de terre</span>
+              <span>(+1,50 €)</span>
+            </div>
           </div>
-          <div className="sup-item">
-            <span>Steack de boeuf haché 120g</span>
-            <span>(+3,50 €)</span>
-          </div>
-          <div className="sup-item">
-            <span>Bacon fumé</span>
-            <span>(+1,50 €)</span>
-          </div>
-          <div className="sup-item">
-            <span>Oeuf</span>
-            <span>(+1,50 €)</span>
-          </div>
-          <div className="sup-item">
-            <span>Cheddar</span>
-            <span>(+1,50 €)</span>
-          </div>
-          <div className="sup-item">
-            <span>Raclette</span>
-            <span>(+1,50 €)</span>
-          </div>
-          <div className="sup-item">
-            <span>Reblochon</span>
-            <span>(+1,50 €)</span>
-          </div>
-          <div className="sup-item">
-            <span>Camembert</span>
-            <span>(+1,50 €)</span>
-          </div>
-          <div className="sup-item">
-            <span>Chèvre</span>
-            <span>(+1,50 €)</span>
-          </div>
-          <div className="sup-item">
-            <span>Rösti de pommes de terre</span>
-            <span>(+1,50 €)</span>
-          </div>
-        </div>
+        )}
 
         <div className="counter">
           <button

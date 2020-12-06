@@ -103,6 +103,7 @@ export const query = graphql`
               }
             }
             title
+            type
             price
             slug
           }

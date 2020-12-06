@@ -6,12 +6,14 @@ import { GatsbyContext } from "../context/context"
 
 const Card = ({
   fixedImage,
+  id,
   image,
   popular,
   price,
   recipe,
   slug,
   title,
+  type,
   toggle,
 }) => {
   const globalData = useContext(GatsbyContext)
@@ -21,6 +23,7 @@ const Card = ({
       onClick={() => {
         toggle()
         setProduct({
+          id: id,
           image: image,
           price: price,
           recipe: recipe,
@@ -33,6 +36,7 @@ const Card = ({
         <h3>{title}</h3>
 
         {recipe && <p>{recipe.recipe}</p>}
+        {type && <p>{type}</p>}
 
         <div className="price">
           <p>{parseInt(price).toFixed(2)} €</p>
