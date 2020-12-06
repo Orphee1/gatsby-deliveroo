@@ -42,7 +42,7 @@ const Modal = ({ toggleModal }) => {
   console.log(subTotal)
 
   React.useEffect(() => {
-    setCounter(0)
+    setCounter(1)
   }, [toggleModal])
 
   return (
