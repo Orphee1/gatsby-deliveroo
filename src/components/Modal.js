@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react"
-
 import styled from "styled-components"
 import {
   AiOutlineExclamationCircle,
@@ -8,12 +7,31 @@ import {
   MdClose,
 } from "react-icons/all"
 import Image from "gatsby-image"
+import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyContext } from "../context/context"
 
+const query = graphql`
+  {
+    file(relativePath: { eq: "image_missing.png" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`
+
 const Modal = ({ toggle }) => {
+  const { file } = useStaticQuery(query)
+  const {
+    childImageSharp: { fluid },
+  } = file
+  const missing = fluid
   const globalData = useContext(GatsbyContext)
   const [counter, setCounter] = React.useState(0)
   //   console.log(globalData)
+
   const {
     addProduct,
     calculSubTotal,
@@ -36,36 +54,34 @@ const Modal = ({ toggle }) => {
     <Wrapper className="yellow">
       <header className="top-title">
         <h3>{title}</h3>
-        <button
-          className="toggle-btn"
-          onClick={() => {
-            //     removeProduct({
-            //       title: title,
-            //       price: price,
-            //       id: id,
-            //     })
-            toggle()
-          }}
-        >
+        <button className="toggle-btn" onClick={toggle}>
           <MdClose fontSize="2rem" style={{ color: "#00ccbb" }} />
         </button>
       </header>
       <section className="modal-content">
-        {image && (
+        {image ? (
           <div className="img-container">
             <Image fluid={image.fluid} />
           </div>
+        ) : (
+          <div className="img-container">
+            <Image fluid={missing} />
+          </div>
         )}
-        <div className="alert">
-          <AiOutlineExclamationCircle
-            fontSize="1rem"
-            style={{ color: "#2e3333", marginRight: "0.5rem" }}
-          />
-          <p>Offre valable uniquement sur le plat de base, hors suppléments</p>
-        </div>
+
         <div className="info-container">{recipe && <p>{recipe.recipe}</p>}</div>
+
         {slug && slug.indexOf("burger") !== -1 && (
           <div className="add-container">
+            <div className="alert">
+              <AiOutlineExclamationCircle
+                fontSize="1rem"
+                style={{ color: "#2e3333", marginRight: "0.5rem" }}
+              />
+              <p>
+                Offre valable uniquement sur le plat de base, hors suppléments
+              </p>
+            </div>
             <div className="sup-title">
               <h3>Suppléments</h3>
               <p>Ajoutez des suppléments à votre burger!</p>
