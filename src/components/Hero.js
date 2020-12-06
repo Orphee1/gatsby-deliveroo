@@ -11,7 +11,7 @@ import delivery from "../images/delivery.png"
 const Hero = ({ restau }) => {
   const {
     foodNationality,
-    freeDelivery,
+    //     freeDelivery,
     image,
     info,
     location,

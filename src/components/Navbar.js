@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 import { deliveroo } from "../images"
 import { GiHamburgerMenu, IoIosBasket, IoIosHome } from "react-icons/all"
 import styled from "styled-components"

@@ -40,26 +40,29 @@ const GatsbyProvider = ({ children }) => {
 
   const calculSubTotal = () => {
     let result = 0
-    for (let i = 1; i < cart.length; i++) {
-      if (cart.length === 0) {
-        return 0
-      }
+    for (let i = 0; i < cart.length; i++) {
       result = result + cart[i].price * cart[i].quantity
     }
+
     return result
   }
 
-  //   let subTotal = calculSubTotal()
+  let subTotal = calculSubTotal()
+  let deliveryFee = 1.99
+  let serviceFee = 0.2
 
   return (
     <GatsbyContext.Provider
       value={{
-        calculSubTotal,
-        product,
-        setProduct,
         addProduct,
+        cart,
+        deliveryFee,
+        product,
         removeProduct,
-        // subTotal,
+        serviceFee,
+        setCart,
+        setProduct,
+        subTotal,
       }}
     >
       {children}

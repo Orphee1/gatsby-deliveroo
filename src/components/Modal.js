@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import {
   AiOutlineExclamationCircle,
@@ -22,7 +22,7 @@ const query = graphql`
   }
 `
 
-const Modal = ({ toggle, isModalOpen }) => {
+const Modal = ({ toggleModal }) => {
   const { file } = useStaticQuery(query)
   const {
     childImageSharp: { fluid },
@@ -34,24 +34,15 @@ const Modal = ({ toggle, isModalOpen }) => {
 
   const {
     addProduct,
-    calculSubTotal,
-    product: { id, image, price, recipe, slug, title },
+    product: { id, image, price, recipe, slug, title, type },
     removeProduct,
+    subTotal,
   } = globalData
 
-  let subTotal = calculSubTotal()
-
-  //   useEffect(() => {
-  //     console.log("addProduct fired on on useEffect")
-  //     addProduct({
-  //       title: title,
-  //       price: price,
-  //       id: id,
-  //     })
-  //   }, [title, price, id])
+  console.log(subTotal)
 
   return (
-    <Wrapper className="yellow">
+    <Wrapper className="">
       <header className="top-title">
         <h3>{title}</h3>
         <button
@@ -62,7 +53,7 @@ const Modal = ({ toggle, isModalOpen }) => {
               price: price,
               id: id,
             })
-            toggle()
+            toggleModal()
           }}
         >
           <MdClose fontSize="2rem" style={{ color: "#00ccbb" }} />
@@ -79,7 +70,10 @@ const Modal = ({ toggle, isModalOpen }) => {
           </div>
         )}
 
-        <div className="info-container">{recipe && <p>{recipe.recipe}</p>}</div>
+        <div className="info-container">
+          {recipe && <p>{recipe.recipe}</p>}
+          {type && <p>{type}</p>}
+        </div>
 
         {slug && slug.indexOf("burger") !== -1 && (
           <div className="add-container">
@@ -167,18 +161,8 @@ const Modal = ({ toggle, isModalOpen }) => {
       </section>
 
       <footer className="bottom">
-        <button
-          className="btn"
-          onClick={() => {
-            addProduct({
-              title: title,
-              price: price,
-              id: id,
-            })
-            toggle()
-          }}
-        >
-          Total {subTotal.toFixed(2)} €
+        <button className="btn" onClick={toggleModal}>
+          Total {(price * counter).toFixed(2)} €
         </button>
 
         <button
@@ -189,7 +173,7 @@ const Modal = ({ toggle, isModalOpen }) => {
               price: price,
               id: id,
             })
-            toggle()
+            toggleModal()
           }}
         >
           Annuler

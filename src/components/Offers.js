@@ -6,9 +6,13 @@ import { Card, Cart, Modal } from "./index"
 const Offers = ({ offers }) => {
   //   console.log(offers)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isCartOpen, setIsCartOpen] = useState(false)
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen)
+  }
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen)
   }
 
   return (
@@ -47,7 +51,11 @@ const Offers = ({ offers }) => {
                 {products.map(product => {
                   //   console.log(product)
                   return (
-                    <Card key={product.id} {...product} toggle={toggleModal} />
+                    <Card
+                      key={product.id}
+                      {...product}
+                      toggleModal={toggleModal}
+                    />
                   )
                 })}
               </div>
@@ -58,11 +66,11 @@ const Offers = ({ offers }) => {
       <div
         className={`modal-container ${isModalOpen && "show-modal-container"}`}
       >
-        <Modal toggle={toggleModal} isModalOpen={isModalOpen} />
+        <Modal toggleModal={toggleModal} isModalOpen={isModalOpen} />
       </div>
-      {/* <div className="cart-container show-cart-container">
+      <div className="cart-container">
         <Cart />
-      </div> */}
+      </div>
     </Wrapper>
   )
 }
@@ -135,13 +143,13 @@ const Wrapper = styled.section`
     width: 100%;
   }
 
-  .cart-container {
+  /* .cart-container {
     display: none;
-  }
+  } */
 
-  .show-cart-container {
+  /* .show-cart-container {
     display: block;
-  }
+  } */
 
   .modal-container {
     display: none;
@@ -160,7 +168,7 @@ const Wrapper = styled.section`
       grid-row: 1/2;
       position: sticky;
       top: 0;
-      z-index: 999;
+      z-index: 99;
     }
     .middle-box {
       margin-left: 10vw;
@@ -177,9 +185,9 @@ const Wrapper = styled.section`
     }
     .cart-container {
       display: flex;
-      z-index: 1000;
       grid-column: 3/4;
       grid-row: 2/3;
+      z-index: 199;
       position: sticky;
       top: 0;
     }

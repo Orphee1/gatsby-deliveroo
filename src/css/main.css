@@ -156,3 +156,9 @@ p {
   cursor: pointer;
   border-radius: var(--radius);
 }
+
+.s-b {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -11,22 +11,33 @@ const Card = ({
   popular,
   price,
   recipe,
-  slug,
   title,
   type,
-  toggle,
+  toggleModal,
 }) => {
   const globalData = useContext(GatsbyContext)
-  const { addProduct, setProduct } = globalData
+  const { cart, setCart, setProduct } = globalData
+
   return (
     <Wrapper
       onClick={() => {
-        toggle()
+        toggleModal()
         setProduct({
           id: id,
           image: image,
           price: price,
+          recipe: recipe,
+          title: title,
+          type: type,
         })
+        const newCart = [...cart]
+        newCart.push({
+          id: id,
+          title: title,
+          price: price,
+          quantity: 1,
+        })
+        setCart(newCart)
       }}
     >
       <div className="info">
