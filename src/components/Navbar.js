@@ -1,4 +1,5 @@
 import React, { useContext } from "react"
+import { Link } from "gatsby"
 import { GatsbyContext } from "../context/context"
 import { deliveroo } from "../images"
 import { GiHamburgerMenu, IoIosBasket, IoIosHome } from "react-icons/all"
@@ -11,11 +12,14 @@ const Navbar = () => {
     <Wrapper>
       <div className="nav-center">
         <div className="nav-header">
-          <img src={deliveroo} alt="deliveroo-icon" />
+          <Link to="/" style={{ cursor: "pointer" }}>
+            <img src={deliveroo} alt="deliveroo-icon" />
+          </Link>
           <ul className="nav-links">
             <li className="remove-links">
               <button className="btn">
                 <IoIosBasket />
+
                 <span>{subTotal.toFixed(2)}€</span>
               </button>
             </li>

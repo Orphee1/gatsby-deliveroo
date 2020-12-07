@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { GatsbyContext } from "../context/context"
 import { AiOutlineExclamationCircle, MdClose } from "react-icons/all"
 import { Counter, StateCounter } from "./index"
+import { Link } from "gatsby"
 
 const Cart = () => {
   const [isCartDisplayed, setIsCartDisplayed] = useState(false)
@@ -101,7 +102,16 @@ const Cart = () => {
                   </div>
                 </div>
                 <footer className="bottom">
-                  <button className="btn">Valider mon panier</button>
+                  <Link
+                    to="/checkout"
+                    style={{
+                      width: "100%",
+                      height: "4.6rem",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
+                    <button className="btn">Valider mon panier</button>
+                  </Link>
                   <button className="btn" onClick={toggleCart}>
                     Retour au menu
                   </button>
@@ -215,6 +225,7 @@ const Wrapper = styled.aside`
     display: flex;
     flex-direction: column;
     background: var(--clr-white);
+    z-index: 300;
   }
   .cart-bottom {
     width: 100%;
