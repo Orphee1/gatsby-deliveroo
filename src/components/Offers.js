@@ -88,7 +88,7 @@ const Wrapper = styled.section`
     justify-content: space-between;
     position: sticky;
     top: 0;
-    z-index: 999;
+    z-index: 10;
   }
   .middle-box {
     display: flex;
@@ -143,10 +143,6 @@ const Wrapper = styled.section`
     width: 100%;
   }
 
-  /* .show-cart-container {
-    display: block;
-  } */
-
   .modal-container {
     display: none;
   }
@@ -183,7 +179,7 @@ const Wrapper = styled.section`
       display: flex;
       grid-column: 3/4;
       grid-row: 2/3;
-      z-index: 199;
+      z-index: 50;
       position: sticky;
       top: 0;
     }

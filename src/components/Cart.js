@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react"
 import styled from "styled-components"
 import { GatsbyContext } from "../context/context"
-import { AiOutlineExclamationCircle } from "react-icons/ai"
+import { AiOutlineExclamationCircle, MdClose } from "react-icons/all"
 import { Counter, StateCounter } from "./index"
 
 const Cart = () => {
@@ -25,21 +25,100 @@ const Cart = () => {
 
   return (
     <Wrapper>
-      <article className="cart">
-        {isCartDisplayed ? (
-          <section className="cart-displayed">
-            <div></div>
-          </section>
-        ) : (
-          <section className="cart-bottom">
-            <button className="btn" onClick={toggleCart}>
-              <span>{quantity}</span>
-              <p>Voir panier</p>
-              <span>{subTotal.toFixed(2)}</span>
-            </button>
-          </section>
-        )}
-      </article>
+      {cart.length > 0 && (
+        <article className="cart">
+          {isCartDisplayed ? (
+            <section className="cart-displayed">
+              <div className="content">
+                <header className="top">
+                  <h3>Mon panier</h3>
+                  <button className="toggle-btn" onClick={toggleCart}>
+                    <MdClose fontSize="2rem" style={{ color: "#424848" }} />
+                  </button>
+                </header>
+                <div className="scroll-container">
+                  <div className="container">
+                    {cart.map((item, index) => {
+                      // console.log(item)
+                      const { title, price, quantity } = item
+                      return (
+                        <div className="sub-container" key={index}>
+                          <StateCounter
+                            addProduct={addProduct}
+                            removeProduct={removeProduct}
+                            item={item}
+                          />
+                          <h3>{title}</h3>
+                          <span>{(price * quantity).toFixed(2)}</span>
+                        </div>
+                      )
+                    })}
+                  </div>
+                  <div className="container">
+                    <div className="sub-container">
+                      <h3>Sous-total</h3>
+                      <span>{subTotal.toFixed(2)}</span>
+                    </div>
+                    <div className="sub-container">
+                      <h3>Frais de livraison</h3>
+                      <div className="s-b">
+                        <AiOutlineExclamationCircle
+                          fontSize="1.2rem"
+                          style={{
+                            color: "#424848",
+                            marginRight: "0.5rem",
+                          }}
+                        />
+                        <span>{deliveryFee.toFixed(2)}</span>
+                      </div>
+                    </div>
+                    <div className="sub-container">
+                      <h3>Frais de service</h3>
+                      <div className="s-b">
+                        <AiOutlineExclamationCircle
+                          fontSize="1.2rem"
+                          style={{
+                            color: "#424848",
+                            marginRight: "0.5rem",
+                          }}
+                        />
+                        <span>{serviceFee.toFixed(2)}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="container">
+                    <div className="sub-container">
+                      <h3>Pourboire livreur</h3>
+                      <div className="s-b">
+                        <Counter tips={tips} setTips={setTips} />
+                        <span>{tips.toFixed(2)}</span>
+                      </div>
+                    </div>
+                    <div className="sub-container">
+                      <h3>Total</h3>
+                      <span>{total.toFixed(2)}</span>
+                    </div>
+                  </div>
+                </div>
+                <footer className="bottom">
+                  <button className="btn">Valider mon panier</button>
+                  <button className="btn" onClick={toggleCart}>
+                    Retour au menu
+                  </button>
+                </footer>
+              </div>
+            </section>
+          ) : (
+            <section className="cart-bottom">
+              <button className="btn" onClick={toggleCart}>
+                <span>{quantity}</span>
+                <p>Voir panier</p>
+                <span>{subTotal.toFixed(2)}</span>
+              </button>
+            </section>
+          )}
+        </article>
+      )}
       <article className="cart810">
         {cart.length > 0 ? (
           <section className="cartFull">
@@ -47,7 +126,7 @@ const Cart = () => {
             <div className="container">
               {cart.map((item, index) => {
                 // console.log(item)
-                const { id, title, price, quantity } = item
+                const { title, price, quantity } = item
                 return (
                   <div className="sub-container" key={index}>
                     <StateCounter
@@ -129,6 +208,7 @@ const Wrapper = styled.aside`
   background: transparent;
   display: flex;
   flex-direction: column;
+  z-index: 50;
   .cart {
     width: 100%;
     height: auto;
@@ -143,7 +223,7 @@ const Wrapper = styled.aside`
     padding: 0.5rem 1rem 1.5rem 0.5rem;
     position: fixed;
     bottom: 0;
-    z-index: 1099;
+    /* z-index: 1099; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -181,7 +261,96 @@ const Wrapper = styled.aside`
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 1000;
+    /* z-index: 50; */
+  }
+  .content {
+    width: 90%;
+    padding: 0.5rem auto 1rem auto; //
+    height: auto;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .top {
+    width: 100%;
+    height: 5rem;
+    padding: 0.5rem auto;
+    border-bottom: 1px solid var(--cl-grey-5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--clr-black);
+    }
+  }
+  .toggle-btn {
+    position: absolute;
+    top: 10;
+    right: 4.75%;
+    top: 2.75%;
+    font-size: 2.5rem;
+    background: transparent;
+    border-color: transparent;
+    cursor: pointer;
+  }
+  .scroll-container {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding-bottom: 60vh;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: 1rem auto;
+  }
+  .sub-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.5rem auto;
+    h3,
+    span {
+      font-weight: normal;
+      font-size: 1.2rem;
+      color: var(--cl-grey-2);
+    }
+  }
+  .bottom {
+    /* opacity: 0; */
+    position: absolute;
+    bottom: 0;
+    background: var(--clr-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 24vh;
+    border-top: 1px solid var(--cl-grey-5);
+    padding: 0.5rem 0 1rem 0;
+    /* -webkit-box-shadow: 0px -1px 4px 0px rgba(0, 0, 0, 0.47);
+    box-shadow: 0px -1px 4px 0px rgba(0, 0, 0, 0.47); */
+    button {
+      width: 90%;
+      height: 4.6rem;
+      color: var(--clr-white);
+      background: var(--clr-turq);
+      display: flex;
+      justify-content: center;
+      margin: 0.5rem auto;
+    }
+    button:nth-child(2) {
+      color: var(--clr-turq);
+      background: var(--clr-white);
+    }
   }
   .cartEmpty {
     display: none;

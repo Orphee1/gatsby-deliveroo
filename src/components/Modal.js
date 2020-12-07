@@ -198,7 +198,7 @@ const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 1000;
+  z-index: 200;
   .top-title {
     width: 100%;
     height: 5rem;
@@ -268,7 +268,7 @@ const Wrapper = styled.section`
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding-bottom: 29vh;
+    padding-bottom: 29vh; // ???? doesn't work on iPhone
     span {
       color: var(--clr-black);
       font-weight: bold;

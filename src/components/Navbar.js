@@ -1,9 +1,12 @@
-import React from "react"
+import React, { useContext } from "react"
+import { GatsbyContext } from "../context/context"
 import { deliveroo } from "../images"
 import { GiHamburgerMenu, IoIosBasket, IoIosHome } from "react-icons/all"
 import styled from "styled-components"
 
-const Navbar = ({}) => {
+const Navbar = () => {
+  const globalData = useContext(GatsbyContext)
+  const { subTotal } = globalData
   return (
     <Wrapper>
       <div className="nav-center">
@@ -13,7 +16,7 @@ const Navbar = ({}) => {
             <li className="remove-links">
               <button className="btn">
                 <IoIosBasket />
-                <span>0,00€</span>
+                <span>{subTotal.toFixed(2)}€</span>
               </button>
             </li>
             <li className="remove-links">
