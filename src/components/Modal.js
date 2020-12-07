@@ -36,10 +36,8 @@ const Modal = ({ toggleModal }) => {
     addProduct,
     product: { id, image, price, recipe, slug, title, type },
     removeProduct,
-    subTotal,
+    //     subTotal,
   } = globalData
-
-  console.log(subTotal)
 
   React.useEffect(() => {
     setCounter(1)
@@ -198,7 +196,7 @@ const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 200;
+  z-index: 999;
   .top-title {
     width: 100%;
     height: 5rem;

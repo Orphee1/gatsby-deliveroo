@@ -160,7 +160,6 @@ const Wrapper = styled.section`
       grid-row: 1/2;
       position: sticky;
       top: 0;
-      z-index: 99;
     }
     .middle-box {
       margin-left: 10vw;

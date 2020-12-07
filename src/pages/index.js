@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Hero, Layout, Offers } from "../components"
+import { Hero, Layout, Offers, SEO } from "../components"
 
 const Home = ({ data }) => {
   //   console.log(data)
@@ -9,6 +9,7 @@ const Home = ({ data }) => {
 
   return (
     <Layout>
+      <SEO title="Home" />
       <Hero restau={restau} />
       <Offers offers={offers} />
     </Layout>

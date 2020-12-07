@@ -5,7 +5,7 @@ const GatsbyContext = React.createContext()
 const GatsbyProvider = ({ children }) => {
   const [product, setProduct] = useState({})
   const [cart, setCart] = useState([])
-  console.log(cart)
+  //   console.log(cart)
   const addProduct = product => {
     const newCart = [...cart]
     let isFound = false

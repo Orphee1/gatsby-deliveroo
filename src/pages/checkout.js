@@ -1,11 +1,12 @@
 import React from "react"
-import { Layout } from "../components"
+import { Layout, SEO } from "../components"
 import styled from "styled-components"
 import { AiFillLock, AiOutlineClockCircle } from "react-icons/ai"
 
 const Checkout = () => {
   return (
     <Layout>
+      <SEO title="Checkout" />
       <Wrapper>
         <section className="top">
           <div className="center">

@@ -4,9 +4,12 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Deliveroo`,
+    description: `Little Deliveroo's clone app demo, built with Gatsby, GraphQl, Contentful`,
+    author: `Hugo Lattard`,
+    titleTemplate: `%s | Deliveroo in Gatsby`,
+    url: `https://hl-gatsby-deliveroo.netlify.app/`,
+    twitterUsername: `@HugoLattard`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

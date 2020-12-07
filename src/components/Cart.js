@@ -132,7 +132,21 @@ const Cart = () => {
       <article className="cart810">
         {cart.length > 0 ? (
           <section className="cartFull">
-            <button className="btn">Valider mon panier</button>
+            <Link to="/checkout" style={{ width: "100%" }}>
+              <button
+                className="btn"
+                style={{
+                  width: "100%",
+                  color: "white",
+                  background: "#00ccbb",
+                  display: "flex",
+                  justifyContent: "center",
+                  height: "4rem",
+                }}
+              >
+                Valider mon panier
+              </button>
+            </Link>
             <div className="container">
               {cart.map((item, index) => {
                 // console.log(item)
@@ -225,7 +239,7 @@ const Wrapper = styled.aside`
     display: flex;
     flex-direction: column;
     background: var(--clr-white);
-    z-index: 300;
+    z-index: 50;
   }
   .cart-bottom {
     width: 100%;
@@ -234,11 +248,11 @@ const Wrapper = styled.aside`
     padding: 0.5rem 1rem 1.5rem 0.5rem;
     position: fixed;
     bottom: 0;
-    /* z-index: 1099; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 50;
     > button {
       width: 90%;
       height: 4.6rem;
@@ -272,7 +286,7 @@ const Wrapper = styled.aside`
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* z-index: 50; */
+    z-index: 50;
   }
   .content {
     width: 90%;

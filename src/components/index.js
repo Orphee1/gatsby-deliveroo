@@ -7,6 +7,7 @@ import Layout from "./layout"
 import Modal from "./Modal"
 import Navbar from "./Navbar"
 import Offers from "./Offers"
+import SEO from "./seo"
 import StateCounter from "./StateCounter"
 export {
   Card,
@@ -18,5 +19,6 @@ export {
   Modal,
   Navbar,
   Offers,
+  SEO,
   StateCounter,
 }
