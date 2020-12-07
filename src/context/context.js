@@ -47,6 +47,15 @@ const GatsbyProvider = ({ children }) => {
     return result
   }
 
+  const calculQuantity = () => {
+    let result = 0
+    for (let i = 0; i < cart.length; i++) {
+      result = result + cart[i].quantity
+    }
+    return result
+  }
+
+  let quantity = calculQuantity() // required by cart on mobile device
   let subTotal = calculSubTotal()
   let deliveryFee = 1.99
   let serviceFee = 0.2
@@ -58,6 +67,7 @@ const GatsbyProvider = ({ children }) => {
         cart,
         deliveryFee,
         product,
+        quantity,
         removeProduct,
         serviceFee,
         setCart,

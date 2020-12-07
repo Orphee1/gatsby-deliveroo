@@ -6,13 +6,9 @@ import { Card, Cart, Modal } from "./index"
 const Offers = ({ offers }) => {
   //   console.log(offers)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [isCartOpen, setIsCartOpen] = useState(false)
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen)
-  }
-  const toggleCart = () => {
-    setIsCartOpen(!isCartOpen)
   }
 
   return (
@@ -66,7 +62,7 @@ const Offers = ({ offers }) => {
       <div
         className={`modal-container ${isModalOpen && "show-modal-container"}`}
       >
-        <Modal toggleModal={toggleModal} isModalOpen={isModalOpen} />
+        <Modal toggleModal={toggleModal} />
       </div>
       <div className="cart-container">
         <Cart />
@@ -143,9 +139,9 @@ const Wrapper = styled.section`
     width: 100%;
   }
 
-  /* .cart-container {
-    display: none;
-  } */
+  .cart-container {
+    width: 100%;
+  }
 
   /* .show-cart-container {
     display: block;

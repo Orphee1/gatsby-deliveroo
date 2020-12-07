@@ -14,7 +14,10 @@ const Counter = ({ tips, setTips }) => {
         }}
       >
         <FiMinusCircle
-        // style={{ color: "#00ccbb" }}
+          fontSize="1.2rem"
+          style={{
+            color: "#00ccbb",
+          }}
         />
       </button>
 
@@ -25,7 +28,11 @@ const Counter = ({ tips, setTips }) => {
         }}
       >
         <FiPlusCircle
-        // style={{ color: "#00ccbb" }}
+          fontSize="1.2rem"
+          style={{
+            color: "#00ccbb",
+            marginRight: "0.5rem",
+          }}
         />
       </button>
     </Wrapper>

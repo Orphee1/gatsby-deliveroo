@@ -89,6 +89,9 @@ const Wrapper = styled.footer`
     p {
       color: var(--clr-white);
     }
+    p:hover {
+      color: var(--clr-turq);
+    }
   }
   .card img {
     width: 10rem;

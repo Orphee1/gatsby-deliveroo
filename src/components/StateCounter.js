@@ -15,7 +15,13 @@ const StateCounter = ({ addProduct, item, removeProduct }) => {
           removeProduct(item)
         }}
       >
-        <FiMinusCircle />
+        <FiMinusCircle
+          fontSize="1.2rem"
+          style={{
+            color: "#00ccbb",
+            marginRight: "0.5rem",
+          }}
+        />
       </button>
       {count}
       <button
@@ -25,7 +31,10 @@ const StateCounter = ({ addProduct, item, removeProduct }) => {
           addProduct(item)
         }}
       >
-        <FiPlusCircle />
+        <FiPlusCircle
+          fontSize="1.2rem"
+          style={{ color: "#00ccbb", marginLeft: "0.5rem" }}
+        />
       </button>
     </Wrapper>
   )
@@ -39,6 +48,9 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: auto 0.5rem auto 0;
+  font-size: 1.2rem;
+  font-family: "IBM Plex Sans", sans-serif;
+  color: var(-cl-grey-6);
   .counter-btn {
     font-size: 1rem;
     cursor: pointer;
