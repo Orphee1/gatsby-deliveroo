@@ -36,7 +36,7 @@ const Modal = ({ toggleModal }) => {
     addProduct,
     product: { id, image, price, recipe, slug, title, type },
     removeProduct,
-    //     subTotal,
+        // subTotal,
   } = globalData
 
   React.useEffect(() => {
