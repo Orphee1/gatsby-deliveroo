@@ -226,15 +226,21 @@ const Wrapper = styled.section`
     flex-direction: column;
     overflow: scroll;
     height: auto;
+    width: 90%;
   }
 
   .img-container {
     width: 90%;
-    margin: 1rem auto;
+    margin: 0.5rem auto;
+    div {
+width: 100%;
+  height: 20rem;
+  object-fit: cover;
+    }
   }
   .info-container {
     width: 90%;
-    margin: 1rem auto;
+    margin: 0.5rem auto;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
