@@ -56,10 +56,6 @@ const Checkout = () => {
                     placeholder="+33 9 77 55 03 30"
                     className="form-control"
                   />
-
-                  {/* <button type="submit" className="btn submit-btn">
-                    Envoyer
-                  </button> */}
                 </div>
 
                 <div className="form-group">
@@ -159,7 +155,7 @@ const Wrapper = styled.main`
   .form-control {
     display: block;
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: 1rem 1rem;
     border: 1px solid var(--cl-grey-6);
     margin-bottom: 1.25rem;
     border-radius: var(--radius);

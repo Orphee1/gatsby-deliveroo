@@ -18,6 +18,8 @@ const Card = ({
   const globalData = useContext(GatsbyContext)
   const { cart, setCart, setProduct } = globalData
 
+
+
   return (
     <Wrapper
       onClick={() => {
@@ -43,7 +45,7 @@ const Card = ({
       <div className="info">
         <h3>{title}</h3>
 
-        {recipe && <p>{recipe.recipe}</p>}
+        {recipe && <p>{`${recipe.recipe.substring(0, 57)}...`}</p>}
         {type && <p>{type}</p>}
 
         <div className="price">
