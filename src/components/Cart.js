@@ -4,7 +4,7 @@ import { GatsbyContext } from "../context/context"
 import { AiOutlineExclamationCircle, MdClose } from "react-icons/all"
 import { Counter, StateCounter } from "./index"
 import { Link } from "gatsby"
-
+import { formatPrice } from "../utils/helpers"
 const Cart = () => {
   const [isCartDisplayed, setIsCartDisplayed] = useState(false)
   const globalData = useContext(GatsbyContext)
@@ -50,7 +50,7 @@ const Cart = () => {
                             item={item}
                           />
                           <h3>{title}</h3>
-                          <span>{(price * quantity).toFixed(2)}</span>
+                          <span>{formatPrice(price * quantity)}</span>
                         </div>
                       )
                     })}
@@ -58,7 +58,7 @@ const Cart = () => {
                   <div className="container">
                     <div className="sub-container">
                       <h3>Sous-total</h3>
-                      <span>{subTotal.toFixed(2)}</span>
+                      <span>{formatPrice(subTotal)}</span>
                     </div>
                     <div className="sub-container">
                       <h3>Frais de livraison</h3>
@@ -70,7 +70,7 @@ const Cart = () => {
                             marginRight: "0.5rem",
                           }}
                         />
-                        <span>{deliveryFee.toFixed(2)}</span>
+                        <span>{formatPrice(deliveryFee)}</span>
                       </div>
                     </div>
                     <div className="sub-container">
@@ -83,7 +83,7 @@ const Cart = () => {
                             marginRight: "0.5rem",
                           }}
                         />
-                        <span>{serviceFee.toFixed(2)}</span>
+                        <span>{formatPrice(serviceFee)}</span>
                       </div>
                     </div>
                   </div>
@@ -92,12 +92,12 @@ const Cart = () => {
                       <h3>Pourboire livreur</h3>
                       <div className="s-b">
                         <Counter tips={tips} setTips={setTips} />
-                        <span>{tips.toFixed(2)}</span>
+                        <span>{formatPrice(tips)}</span>
                       </div>
                     </div>
                     <div className="sub-container">
                       <h3>Total</h3>
-                      <span>{total.toFixed(2)}</span>
+                      <span>{formatPrice(total)}</span>
                     </div>
                   </div>
                 </div>
@@ -123,7 +123,7 @@ const Cart = () => {
               <button className="btn" onClick={toggleCart}>
                 <span>{quantity}</span>
                 <p>Voir panier</p>
-                <span>{subTotal.toFixed(2)}</span>
+                <span>{formatPrice(subTotal)}</span>
               </button>
             </section>
           )}
@@ -159,7 +159,7 @@ const Cart = () => {
                       item={item}
                     />
                     <h3>{title}</h3>
-                    <span>{(price * quantity).toFixed(2)}</span>
+                    <span>{formatPrice(price * quantity)}</span>
                   </div>
                 )
               })}
@@ -167,7 +167,7 @@ const Cart = () => {
             <div className="container">
               <div className="sub-container">
                 <h3>Sous-total</h3>
-                <span>{subTotal.toFixed(2)}</span>
+                <span>{formatPrice(subTotal)}</span>
               </div>
               <div className="sub-container">
                 <h3>Frais de livraison</h3>
@@ -179,7 +179,7 @@ const Cart = () => {
                       marginRight: "0.5rem",
                     }}
                   />
-                  <span>{deliveryFee.toFixed(2)}</span>
+                  <span>{formatPrice(deliveryFee)}</span>
                 </div>
               </div>
               <div className="sub-container">
@@ -192,7 +192,7 @@ const Cart = () => {
                       marginRight: "0.5rem",
                     }}
                   />
-                  <span>{serviceFee.toFixed(2)}</span>
+                  <span>{formatPrice(serviceFee)}</span>
                 </div>
               </div>
             </div>
@@ -201,12 +201,12 @@ const Cart = () => {
                 <h3>Pourboire livreur</h3>
                 <div className="s-b">
                   <Counter tips={tips} setTips={setTips} />
-                  <span>{tips.toFixed(2)}</span>
+                  <span>{formatPrice(tips)}</span>
                 </div>
               </div>
               <div className="sub-container">
                 <h3>Total</h3>
-                <span>{total.toFixed(2)}</span>
+                <span>{formatPrice(total)}</span>
               </div>
             </div>
           </section>

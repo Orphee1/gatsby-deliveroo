@@ -2,6 +2,7 @@ import React, { useContext } from "react"
 import { Link } from "gatsby"
 import { GatsbyContext } from "../context/context"
 import { deliveroo } from "../images"
+import { formatPrice } from "../utils/helpers"
 import { GiHamburgerMenu, IoIosBasket, IoIosHome } from "react-icons/all"
 import styled from "styled-components"
 
@@ -19,8 +20,7 @@ const Navbar = () => {
             <li className="remove-links">
               <button className="btn">
                 <IoIosBasket />
-
-                <span>{subTotal.toFixed(2)}€</span>
+                <span>{formatPrice(subTotal)}</span>
               </button>
             </li>
             <li className="remove-links">

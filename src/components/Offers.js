@@ -45,7 +45,7 @@ const Offers = ({ offers }) => {
               </div>
               <div className="card-container">
                 {products.map(product => {
-                  //   console.log(product)
+                  console.log(product)
                   return (
                     <Card
                       key={product.id}

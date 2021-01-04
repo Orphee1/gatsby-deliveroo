@@ -5,7 +5,7 @@ const GatsbyContext = React.createContext()
 const GatsbyProvider = ({ children }) => {
   const [product, setProduct] = useState({})
   const [cart, setCart] = useState([])
-  //   console.log(cart)
+  // console.log(cart)
   const addProduct = product => {
     const newCart = [...cart]
     let isFound = false
@@ -38,25 +38,18 @@ const GatsbyProvider = ({ children }) => {
     }
   }
 
-  const calculSubTotal = () => {
-    let result = 0
-    for (let i = 0; i < cart.length; i++) {
-      result = result + cart[i].price * cart[i].quantity
+  const { quantity, subTotal } = cart.reduce(
+    (acc, product) => {
+      acc.subTotal += product.price * product.quantity
+      acc.quantity += product.quantity
+      return acc
+    },
+    {
+      subTotal: 0,
+      quantity: 0,
     }
+  )
 
-    return result
-  }
-
-  const calculQuantity = () => {
-    let result = 0
-    for (let i = 0; i < cart.length; i++) {
-      result = result + cart[i].quantity
-    }
-    return result
-  }
-
-  let quantity = calculQuantity() // required by cart on mobile device
-  let subTotal = calculSubTotal()
   let deliveryFee = 1.99
   let serviceFee = 0.2
 

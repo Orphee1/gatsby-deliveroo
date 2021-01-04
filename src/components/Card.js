@@ -3,6 +3,7 @@ import styled from "styled-components"
 import Image from "gatsby-image"
 import { FaStar } from "react-icons/fa"
 import { GatsbyContext } from "../context/context"
+import { formatPrice } from "../utils/helpers"
 
 const Card = ({
   fixedImage,
@@ -17,8 +18,6 @@ const Card = ({
 }) => {
   const globalData = useContext(GatsbyContext)
   const { cart, setCart, setProduct } = globalData
-
-
 
   return (
     <Wrapper
@@ -49,7 +48,7 @@ const Card = ({
         {type && <p>{type}</p>}
 
         <div className="price">
-          <p>{price.toFixed(2)} €</p>
+          <p>{formatPrice(price)}</p>
           {popular && (
             <>
               <FaStar
