@@ -1,41 +1,14 @@
 /*
 =============== 
-Debug
-===============
-*/
-
-.red {
-  background-color: red;
-}
-
-.green {
-  background-color: green;
-}
-
-.blue {
-  background-color: blue;
-}
-
-.yellow {
-  background-color: yellow;
-}
-
-.orange {
-  background-color: #f56b2b;
-  color: #f56b2b;
-}
-
-/*
-=============== 
 polices import
 ===============
 */
 
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&display=swap"); */
 /*
 font-family: 'IBM Plex Sans', sans-serif;
 */
-@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700&display=swap"); */
 /*
 font-family: 'Barlow', sans-serif;
 */
@@ -161,4 +134,31 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+/*
+=============== 
+Debug
+===============
+*/
+
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.orange {
+  background-color: #f56b2b;
+  color: #f56b2b;
 }
