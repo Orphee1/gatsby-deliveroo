@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import { GatsbyImage } from "gatsby-plugin-image"
-import { Article, Card, Cart, Modal } from "./index"
+// import { Article, Card, Cart, Modal } from "./index"
+import { Card, Cart, Modal } from "./index"
 import { OfferStripeContainer } from "../containers/offerStripe"
 
 const Offers = ({ offers }) => {
@@ -20,7 +21,7 @@ const Offers = ({ offers }) => {
           // console.log(offer)
           const { bigIcon, name, pitch, products } = offer
           return (
-            <Article.Container className="offer" key={index}>
+            <div className="offer" key={index}>
               <div className="header blue">
                 <div className="offer-title red">
                   <GatsbyImage image={bigIcon.gatsbyImageData} alt="icon" />
@@ -39,7 +40,7 @@ const Offers = ({ offers }) => {
                   )
                 })}
               </div>
-            </Article.Container>
+            </div>
           )
         })}
       </section>
