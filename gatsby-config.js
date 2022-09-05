@@ -20,6 +20,7 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -42,10 +43,16 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-styled-components`,
+    },
+    {
       resolve: `gatsby-plugin-web-font-loader`,
       options: {
         google: {
           families: ["IBM Plex Sans", "Barlow"],
+        },
+        adobe: {
+          families: ["Stratos"],
         },
       },
     },

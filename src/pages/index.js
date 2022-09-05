@@ -1,125 +1,28 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Hero, Layout, Offers, SEO } from "../components"
+import { Layout, Offers, Seo } from "../components"
+import { HeroContainer } from "../containers"
 
 const Home = ({ data }) => {
-  //   console.log(data)
   const { contentfulRestaurant: restau } = data
   const offers = restau.productsOffers
 
   return (
     <Layout>
-      <SEO title="Home" />
-      <Hero restau={restau} />
+      <Seo title="Home" />
+      <HeroContainer restau={restau} />
       <Offers offers={offers} />
     </Layout>
   )
 }
 
 export default Home
+
 export const query = graphql`
-  {
+  query {
     contentfulRestaurant {
-      productsOffers {
-        name
-        icon {
-          fixed(width: 20) {
-            ...GatsbyContentfulFixed
-          }
-        }
-        bigIcon: icon {
-          fixed(width: 30) {
-            ...GatsbyContentfulFixed
-          }
-        }
-        products {
-          ... on ContentfulBurger {
-            id
-            image {
-              fluid {
-                ...GatsbyContentfulFluid
-              }
-            }
-            fixedImage: image {
-              fixed(width: 110, height: 110) {
-                ...GatsbyContentfulFixed
-              }
-            }
-            title
-            popular
-            price
-            recipe {
-              recipe
-            }
-            slug
-          }
-          ... on ContentfulDesserts {
-            id
-            image {
-              fluid {
-                ...GatsbyContentfulFluid
-              }
-            }
-            fixedImage: image {
-              fixed(width: 110, height: 110) {
-                ...GatsbyContentfulFixed
-              }
-            }
-            title
-            price
-            recipe {
-              recipe
-            }
-            slug
-          }
-          ... on ContentfulPetiteFaim {
-            id
-            image {
-              fluid {
-                ...GatsbyContentfulFluid
-              }
-            }
-            fixedImage: image {
-              fixed(width: 110, height: 110) {
-                ...GatsbyContentfulFixed
-              }
-            }
-            title
-            price
-            recipe {
-              recipe
-            }
-            slug
-          }
-          ... on ContentfulSofts {
-            id
-            image {
-              fluid {
-                ...GatsbyContentfulFluid
-              }
-            }
-            fixedImage: image {
-              fixed(width: 110, height: 110) {
-                ...GatsbyContentfulFixed
-              }
-            }
-            title
-            type
-            price
-            slug
-          }
-        }
-        pitch {
-          pitch
-        }
-      }
       foodNationality
       freeDelivery
-      image {
-        fluid {
-          ...GatsbyContentfulFluid
-        }
-      }
       info {
         info
       }
@@ -131,6 +34,102 @@ export const query = graphql`
       schedule
       sector
       title
+      image {
+        gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+      }
+      productsOffers {
+        name
+        icon {
+          gatsbyImageData(placeholder: TRACED_SVG, layout: FIXED)
+        }
+        bigIcon: icon {
+          gatsbyImageData(placeholder: TRACED_SVG, layout: CONSTRAINED)
+        }
+        products {
+          ... on ContentfulBurger {
+            id
+            image {
+              gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED)
+            }
+            fixedImage: image {
+              gatsbyImageData(
+                width: 200
+                height: 150
+                placeholder: BLURRED
+                layout: CONSTRAINED
+              )
+            }
+            popular
+            price
+            title
+            slug
+            recipe {
+              recipe
+            }
+          }
+          ... on ContentfulDesserts {
+            id
+            image {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+            }
+            fixedImage: image {
+              gatsbyImageData(
+                width: 200
+                height: 150
+                placeholder: BLURRED
+                layout: CONSTRAINED
+              )
+            }
+            title
+            price
+            recipe {
+              recipe
+            }
+            slug
+          }
+          ... on ContentfulPetiteFaim {
+            id
+            image {
+              gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED)
+            }
+            fixedImage: image {
+              gatsbyImageData(
+                width: 200
+                height: 150
+                placeholder: BLURRED
+                layout: CONSTRAINED
+              )
+            }
+            price
+            title
+            recipe {
+              recipe
+            }
+            slug
+          }
+          ... on ContentfulSofts {
+            id
+            image {
+              gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED)
+            }
+            fixedImage: image {
+              gatsbyImageData(
+                width: 200
+                height: 150
+                placeholder: BLURRED
+                layout: CONSTRAINED
+              )
+            }
+            price
+            slug
+            title
+            type
+          }
+        }
+        pitch {
+          pitch
+        }
+      }
     }
   }
 `

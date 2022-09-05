@@ -1,11 +1,11 @@
 import React from "react"
-import { Layout, SEO } from "../components"
+import { Layout, Seo } from "../components"
 import { Link } from "gatsby"
 import styled from "styled-components"
 
 const NotFoundPage = () => (
   <Layout>
-    <SEO title="Not Found" />
+    <Seo title="Not Found" />
     <Wrapper>
       <h1>Oop's </h1>
       <Link to="/" className="btn">

@@ -1,44 +1,21 @@
 import React, { useContext } from "react"
 import styled from "styled-components"
-import {
-  AiOutlineExclamationCircle,
-  FiMinusCircle,
-  FiPlusCircle,
-  MdClose,
-} from "react-icons/all"
-import Image from "gatsby-image"
-import { graphql, useStaticQuery } from "gatsby"
+import { FiMinusCircle, FiPlusCircle } from "react-icons/fi"
+import { AiOutlineExclamationCircle } from "react-icons/ai"
+import { MdClose } from "react-icons/md"
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import { GatsbyContext } from "../context/context"
 
-const query = graphql`
-  {
-    file(relativePath: { eq: "image_missing.png" }) {
-      childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  }
-`
-
 const Modal = ({ toggleModal }) => {
-  const { file } = useStaticQuery(query)
-  const {
-    childImageSharp: { fluid },
-  } = file
-  const missing = fluid
   const globalData = useContext(GatsbyContext)
   const [counter, setCounter] = React.useState(1)
-  //   console.log(globalData)
 
   const {
     addProduct,
     product: { id, image, price, recipe, slug, title, type },
     removeProduct,
-        // subTotal,
+    // subTotal,
   } = globalData
-
   React.useEffect(() => {
     setCounter(1)
   }, [toggleModal])
@@ -64,11 +41,17 @@ const Modal = ({ toggleModal }) => {
       <section className="modal-content">
         {image ? (
           <div className="img-container">
-            <Image fluid={image.fluid} />
+            <GatsbyImage image={image.gatsbyImageData} alt={title} />
           </div>
         ) : (
           <div className="img-container">
-            <Image fluid={missing} />
+            <StaticImage
+              src="../images/image_missing.png"
+              alt="Image missing logo"
+              placeholder="blurred"
+              layout="fixed"
+              width={200}
+            />
           </div>
         )}
 
@@ -233,9 +216,9 @@ const Wrapper = styled.section`
     width: 90%;
     margin: 0.5rem auto;
     div {
-width: 100%;
-  height: 20rem;
-  object-fit: cover;
+      width: 100%;
+      height: 20rem;
+      object-fit: cover;
     }
   }
   .info-container {

@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import styled from "styled-components"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import { FaStar } from "react-icons/fa"
 import { GatsbyContext } from "../context/context"
 import { formatPrice } from "../utils/helpers"
@@ -24,18 +24,18 @@ const Card = ({
       onClick={() => {
         toggleModal()
         setProduct({
-          id: id,
-          image: image,
-          price: price,
-          recipe: recipe,
-          title: title,
-          type: type,
+          id,
+          image,
+          price,
+          recipe,
+          title,
+          type,
         })
         const newCart = [...cart]
         newCart.push({
-          id: id,
-          title: title,
-          price: price,
+          id,
+          title,
+          price,
           quantity: 1,
         })
         setCart(newCart)
@@ -43,7 +43,6 @@ const Card = ({
     >
       <div className="info">
         <h3>{title}</h3>
-
         {recipe && <p>{`${recipe.recipe.substring(0, 57)}...`}</p>}
         {type && <p>{type}</p>}
 
@@ -72,8 +71,9 @@ const Card = ({
           )}
         </div>
       </div>
-
-      {fixedImage && <Image fixed={fixedImage.fixed} />}
+      {fixedImage && (
+        <GatsbyImage image={fixedImage.gatsbyImageData} alt={title} />
+      )}
     </Wrapper>
   )
 }

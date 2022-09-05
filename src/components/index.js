@@ -1,15 +1,18 @@
+import { Article } from "./article"
 import Card from "./Card"
 import Cart from "./Cart"
 import Counter from "./Counter"
-import Footer from "./Footer"
-import Hero from "./Hero"
+import { Footer } from "./footer"
+import { Hero } from "./hero"
 import Layout from "./layout"
 import Modal from "./Modal"
-import Navbar from "./Navbar"
+import { Navbar } from "./navbar"
+import { OfferStripe } from "./offerStripe"
 import Offers from "./Offers"
-import SEO from "./seo"
+import Seo from "./Seo"
 import StateCounter from "./StateCounter"
 export {
+  Article,
   Card,
   Cart,
   Counter,
@@ -19,6 +22,7 @@ export {
   Modal,
   Navbar,
   Offers,
-  SEO,
+  OfferStripe,
+  Seo,
   StateCounter,
 }

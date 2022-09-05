@@ -18,7 +18,7 @@ const query = graphql`
   }
 `
 
-const SEO = ({ title }) => {
+const Seo = ({ title }) => {
   const { pathname } = useLocation()
   const { site } = useStaticQuery(query)
   const {
@@ -30,7 +30,6 @@ const SEO = ({ title }) => {
       url,
     },
   } = site
-  //   console.log(site)
 
   const seo = {
     title: title || defaultTitle,
@@ -47,4 +46,4 @@ const SEO = ({ title }) => {
   )
 }
 
-export default SEO
+export default Seo

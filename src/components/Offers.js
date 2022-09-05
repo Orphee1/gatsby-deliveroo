@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import Image from "gatsby-image"
-import { Card, Cart, Modal } from "./index"
+import { GatsbyImage } from "gatsby-plugin-image"
+import { Article, Card, Cart, Modal } from "./index"
+import { OfferStripeContainer } from "../containers/offerStripe"
 
 const Offers = ({ offers }) => {
-  //   console.log(offers)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const toggleModal = () => {
@@ -13,39 +13,23 @@ const Offers = ({ offers }) => {
 
   return (
     <Wrapper>
-      <div className="middle">
-        <div className="middle-box">
-          <span style={{ color: "#00ccbb", flexShrink: "0", margin: "0 1rem" }}>
-            BURGER PARFAIT
-          </span>
-          {offers.map((offer, index) => {
-            const { icon, name } = offer
-            return (
-              <div className="icon-offer" key={index}>
-                <Image fixed={icon.fixed} />
-                <span>{name}</span>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-      <section className="offers-container">
+      <OfferStripeContainer offers={offers} />
+
+      <section className="offers-container green">
         {offers.map((offer, index) => {
-          //   console.log(offer)
+          // console.log(offer)
           const { bigIcon, name, pitch, products } = offer
-          //   console.log(products)
           return (
-            <article className="offer" key={index}>
-              <div className="header">
-                <div className="offer-title">
-                  <Image fixed={bigIcon.fixed} />
+            <Article.Container className="offer" key={index}>
+              <div className="header blue">
+                <div className="offer-title red">
+                  <GatsbyImage image={bigIcon.gatsbyImageData} alt="icon" />
                   <h2>{name}</h2>
                 </div>
                 {pitch && <p>{pitch.pitch}</p>}
               </div>
               <div className="card-container">
                 {products.map(product => {
-                  console.log(product)
                   return (
                     <Card
                       key={product.id}
@@ -55,7 +39,7 @@ const Offers = ({ offers }) => {
                   )
                 })}
               </div>
-            </article>
+            </Article.Container>
           )
         })}
       </section>
@@ -77,12 +61,13 @@ const Wrapper = styled.section`
   width: 100%;
   height: auto;
   background: var(--clr-grey-4);
+  /* background: green; */
   position: relative;
   .middle {
     width: 100%;
     height: 4rem;
     border-top: 1px solid var(--cl-grey-5);
-    background: var(--clr-white);
+    /* background: var(--clr-white); */
     display: flex;
     align-items: center;
     justify-content: space-between;
