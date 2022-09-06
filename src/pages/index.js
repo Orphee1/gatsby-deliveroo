@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Layout, Offers, Seo } from "../components"
+import { Layout, Offers } from "../components"
 import { HeroContainer } from "../containers"
 
 const Home = ({ data }) => {
@@ -9,7 +9,6 @@ const Home = ({ data }) => {
 
   return (
     <Layout>
-      <Seo title="Home" />
       <HeroContainer restau={restau} />
       <Offers offers={offers} />
     </Layout>

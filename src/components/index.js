@@ -9,7 +9,7 @@ import Modal from "./Modal"
 import { Navbar } from "./navbar"
 import { OfferStripe } from "./offerStripe"
 import Offers from "./Offers"
-import Seo from "./Seo"
+
 import StateCounter from "./StateCounter"
 export {
   Article,
@@ -23,6 +23,5 @@ export {
   Navbar,
   Offers,
   OfferStripe,
-  Seo,
   StateCounter,
 }
