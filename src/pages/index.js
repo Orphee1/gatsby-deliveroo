@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Layout, Offers } from "../components"
-import { HeroContainer } from "../containers"
+import { Layout } from "../components"
+import { HeroContainer, OffersContainer } from "../containers"
 
 const Home = ({ data }) => {
   const { contentfulRestaurant: restau } = data
@@ -10,7 +10,7 @@ const Home = ({ data }) => {
   return (
     <Layout>
       <HeroContainer restau={restau} />
-      <Offers offers={offers} />
+      <OffersContainer offers={offers} />
     </Layout>
   )
 }

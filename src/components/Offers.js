@@ -1,9 +1,7 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { GatsbyImage } from "gatsby-plugin-image"
-// import { Article, Card, Cart, Modal } from "./index"
-import { Card, Cart, Modal } from "./index"
-import { OfferStripeContainer } from "../containers/offerStripe"
+import { Cart, Modal } from "./index"
+import { ArticleContainer, OfferStripeContainer } from "../containers"
 
 const Offers = ({ offers }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -15,32 +13,11 @@ const Offers = ({ offers }) => {
   return (
     <Wrapper>
       <OfferStripeContainer offers={offers} />
-
-      <section className="offers-container green">
-        {offers.map((offer, index) => {
+      <section className="offers-container">
+        {offers.map((offer, i) => {
           // console.log(offer)
-          const { bigIcon, name, pitch, products } = offer
           return (
-            <div className="offer" key={index}>
-              <div className="header blue">
-                <div className="offer-title red">
-                  <GatsbyImage image={bigIcon.gatsbyImageData} alt="icon" />
-                  <h2>{name}</h2>
-                </div>
-                {pitch && <p>{pitch.pitch}</p>}
-              </div>
-              <div className="card-container">
-                {products.map(product => {
-                  return (
-                    <Card
-                      key={product.id}
-                      {...product}
-                      toggleModal={toggleModal}
-                    />
-                  )
-                })}
-              </div>
-            </div>
+            <ArticleContainer key={i} offer={offer} toggleModal={toggleModal} />
           )
         })}
       </section>

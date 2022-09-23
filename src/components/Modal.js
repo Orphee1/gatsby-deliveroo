@@ -171,12 +171,13 @@ const Modal = ({ toggleModal }) => {
 export default Modal
 
 const Wrapper = styled.section`
+  display: flex;
+  /* display: ${({ display }) => display || "flex"}; */
   position: fixed;
   top: 0;
   width: 100%;
   height: 100%;
   background: var(--clr-white);
-  display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 999;

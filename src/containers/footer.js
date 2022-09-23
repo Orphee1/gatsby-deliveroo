@@ -1,6 +1,6 @@
 import React from "react"
 import { Footer } from "../components"
-import { appAndGoogle, appStore, googleplay } from "../images"
+import { appAndGoogle } from "../images"
 
 export function FooterContainer() {
   return (

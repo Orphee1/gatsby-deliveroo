@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "title": "Steack de boeuf haché 80g",
+    "price": "2.50"
+  },
+  {
+    "id": 2,
+    "title": "Steack de boeuf haché 120g",
+    "price": "3.50"
+  },
+  {
+    "id": 3,
+    "title": "Bacon fumé",
+    "price": "1.50"
+  },
+  {
+    "id": 4,
+    "title": "Oeuf",
+    "price": "1.00"
+  },
+  {
+    "id": 5,
+    "title": "Cheddar",
+    "price": "1.00"
+  },
+  {
+    "id": 6,
+    "title": "Raclette",
+    "price": "1.50"
+  },
+  {
+    "id": 7,
+    "title": "Reblochon",
+    "price": "1.50"
+  },
+  {
+    "id": 8,
+    "title": "Camembert",
+    "price": "1.50"
+  },
+  {
+    "id": 9,
+    "title": "Chèvre",
+    "price": "1.50"
+  },
+  {
+    "id": 10,
+    "title": "Rösti de pommes de terre",
+    "price": "1.50"
+  },
+  {
+    "id": 11,
+    "title": "Filet de poulet croustillant",
+    "price": "4.50"
+  }
+]

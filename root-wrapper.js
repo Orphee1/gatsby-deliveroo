@@ -30,6 +30,7 @@ Variables
   --cl-grey-6: hsl(180, 1%, 55%); /* text */
   /*  #8b8d8d  */
   --cl-grey-7: hsl(180, 2%, 40%); /* dark text */
+  /* 	#646868 */
   --cl-grey-8: hsl(180, 1%, 67%);
   /* #aaacac */
   --clr-white: #ffffff;

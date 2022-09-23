@@ -1,28 +1,25 @@
 import React from "react"
 import { GatsbyImage } from "gatsby-plugin-image"
-import {
-  IoIosInformationCircleOutline,
-  MdPeopleOutline,
-  FaStar,
-  FaChevronRight,
-} from "react-icons/all"
+import { IoIosInformationCircleOutline } from "react-icons/io"
+import { MdPeopleOutline } from "react-icons/md"
+import { FaStar, FaChevronRight } from "react-icons/fa"
 import { Hero } from "../components"
 import delivery from "../images/delivery.png"
 
 export const HeroContainer = ({ restau }) => {
   const {
-    foodNationality,
+    // foodNationality,
     image,
-    info,
-    location,
+    // info,
+    // location,
     meal,
     rate,
-    schedule,
-    sector,
+    // schedule,
+    // sector,
     title,
   } = restau
 
-  console.log(restau)
+  // console.log(restau)
 
   return (
     <Hero>
@@ -70,7 +67,6 @@ export const HeroContainer = ({ restau }) => {
               <Hero.Text mr="10px">Livrée dans 25 - 40 min</Hero.Text>
               <Hero.Text color="#00ccbb">Modifier</Hero.Text>
             </Hero.Button>
-
             <Hero.ButtonFixed width="350px" btn>
               <Hero.Icon color="#00ccbb" width="18px" height="18px" mr="10px">
                 <MdPeopleOutline />

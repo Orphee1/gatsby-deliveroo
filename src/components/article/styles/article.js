@@ -1,7 +1,6 @@
 import styled from "styled-components"
 
 export const Container = styled.article`
-  background: blue;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -16,16 +15,17 @@ export const Header = styled.header`
 export const Icon = styled.div``
 
 export const Text = styled.p`
-  font-size: 1.2rem;
+  font-size: 1rem;
 `
 
-export const Title = styled.h2`
+export const Title = styled.h3`
   margin-left: 0.5rem;
+  font-weight: bold;
 `
 
 export const TitleBox = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 `
 export const CardContainer = styled.div`
   display: flex;
