@@ -22,9 +22,13 @@ Variables
   /* #00ccbb  */
   --clr-green: hsl(185, 98%, 25%);
   /* 	#01747e */
-  --cl-grey-1: hsl(180, 5%, 19%); /* footer */
+  --clr-green-2: 	hsl(175, 78%, 42%); 
+  /* 	#17bdae */
+  --cl-grey-1: hsl(180, 5%, 19%); /* 
+  footer  	#2e3333  */ 
   --cl-grey-2: hsl(180, 4%, 27%); /* footer cards*/
   --clr-grey-3: hsl(180, 4%, 89%); /* empty cart btn */
+  /* 	#e2e4e4 */
   --clr-grey-4: hsl(180, 5%, 96%); /* background offers */
   --cl-grey-5: hsl(180, 5%, 92%); /* border-btn and header*/
   --cl-grey-6: hsl(180, 1%, 55%); /* text */

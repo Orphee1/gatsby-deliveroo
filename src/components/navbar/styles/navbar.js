@@ -25,6 +25,9 @@ export const Container = styled.header`
   align-items: center;
   background: var(--clr-white);
   border-bottom: 1px solid var(--cl-grey-5);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 `
 
 export const Row = styled.nav`

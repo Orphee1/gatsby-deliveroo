@@ -93,7 +93,7 @@ export const ModalContainer = ({ display, toggleModal }) => {
             setCounter={setCounter}
             title={title}
           />
-          <Modal.ButtonLarge>
+          <Modal.ButtonLarge onClick={toggleModal}>
             {/* Ajouter pour */}
             {/* {(price * counter).toFixed(2)} */}
             Total: {subTotal.toFixed(2)} €

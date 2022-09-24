@@ -1,11 +1,15 @@
 import React, { useState } from "react"
 import { Offers } from "../components"
-import { ArticleContainer, ModalContainer, OfferStripeContainer } from "./index"
+import {
+  ArticleContainer,
+  CartContainer,
+  ModalContainer,
+  OfferStripeContainer,
+} from "./index"
 import { useIsSSr } from "../utils/helpers"
 
 export const OffersContainer = ({ offers }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  // console.log(isModalOpen)
 
   const isSsr = useIsSSr()
   if (isSsr) {
@@ -33,6 +37,7 @@ export const OffersContainer = ({ offers }) => {
         display={!isModalOpen ? "none" : ""}
         toggleModal={toggleModal}
       />
+      <CartContainer />
     </Offers>
   )
 }

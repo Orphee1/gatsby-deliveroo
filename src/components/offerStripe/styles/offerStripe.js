@@ -7,13 +7,13 @@ export const Container = styled.div`
   height: 4rem;
   background: var(--clr-white);
   border-top: 1px solid var(--cl-grey-5);
-  -webkit-box-shadow: 0px -1px 11px -1px rgba(133, 133, 133, 0.16);
-  box-shadow: 0px -1px 11px -1px rgba(133, 133, 133, 0.16);
+  -webkit-box-shadow: 0px 1px 11px -1px rgba(133, 133, 133, 0.16);
+  box-shadow: 0px 1px 11px -1px rgba(133, 133, 133, 0.16);
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: sticky;
-  top: 0;
+  top: 75px;
   z-index: 10;
 `
 

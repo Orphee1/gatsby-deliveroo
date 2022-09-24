@@ -51,11 +51,13 @@ const GatsbyProvider = ({ children }) => {
   )
 
   let deliveryFee = 1.99
-  let serviceFee = 0.2
+  let serviceFee = 0.79
+  let additionalFee = 0.1
 
   return (
     <GatsbyContext.Provider
       value={{
+        additionalFee,
         addProduct,
         cart,
         deliveryFee,
