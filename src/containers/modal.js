@@ -1,14 +1,18 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
 import { GatsbyContext } from "../context/context"
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import { Modal } from "../components/modal/index"
 import { CounterContainer } from "./counter"
 import { MdClose } from "react-icons/md"
 import supplementsData from "../utils/supplements.json"
-// console.log(supplementsData)
 
 export const ModalContainer = ({ display, toggleModal }) => {
   const globalData = useContext(GatsbyContext)
+  const imageContainerRef = useRef()
+  const imageContainerHeight = imageContainerRef.current
+    ? imageContainerRef.current.getBoundingClientRect().height
+    : null
+
   const [counter, setCounter] = useState(1)
   const [banner, setBanner] = useState(false)
   const {
@@ -23,9 +27,8 @@ export const ModalContainer = ({ display, toggleModal }) => {
   }, [toggleModal])
 
   const handleScroll = event => {
-    const height = 260
     const scrollHeight = event.currentTarget.scrollTop
-    if (scrollHeight > height) {
+    if (scrollHeight > imageContainerHeight) {
       setBanner(true)
     } else {
       setBanner(false)
@@ -42,7 +45,7 @@ export const ModalContainer = ({ display, toggleModal }) => {
           <MdClose />
         </Modal.Button>
         <Modal.Scroll onScroll={handleScroll}>
-          <Modal.ImageContainer>
+          <Modal.ImageContainer ref={imageContainerRef}>
             {image ? (
               <GatsbyImage image={image.gatsbyImageData} alt={title} />
             ) : (

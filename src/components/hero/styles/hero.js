@@ -30,7 +30,7 @@ export const Button = styled.button`
 export const ButtonFixed = styled(Button)`
   @media screen and (max-width: ${({ theme }) => theme.mobile}) {
     position: absolute;
-    top: 370px;
+    top: 300px;
     left: 20px;
   }
 `
@@ -49,6 +49,7 @@ export const Icon = styled.div`
 `
 
 export const Container = styled.main`
+  position: relative;
   display: flex;
   width: 100%;
   padding: 20px 0;

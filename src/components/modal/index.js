@@ -102,12 +102,9 @@ Modal.Icon = function ModalIcon({ children, id, title, price, toggleModal }) {
   )
 }
 
-Modal.ImageContainer = function ModalImageContainer({
-  children,
-  ...restProps
-}) {
-  return <ImageContainer>{children}</ImageContainer>
-}
+Modal.ImageContainer = React.forwardRef(({ children, ...restProps }, ref) => {
+  return <ImageContainer ref={ref}>{children}</ImageContainer>
+})
 
 Modal.InfoContainer = function ModalInfoContainer({ children, ...restProps }) {
   return <InfoContainer>{children}</InfoContainer>

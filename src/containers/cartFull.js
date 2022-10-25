@@ -11,7 +11,7 @@ export const CartFullContainer = () => {
     setDisplay(display => !display)
   }
 
-  console.log(cart)
+  // console.log(cart)
 
   return (
     <Cart.Full>
