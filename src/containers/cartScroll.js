@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react"
-import { GatsbyContext } from "../context/context"
+import { CartContext } from "../context/cart-context"
 import { Cart } from "../components"
 import { AiOutlineExclamationCircle } from "react-icons/ai"
 import { MdClose } from "react-icons/md"
@@ -7,17 +7,8 @@ import { formatPrice } from "../utils/helpers"
 
 export const CartScrollContainer = ({ display, toggleDisplay }) => {
   const [tips, setTips] = useState(0)
-  const globalData = useContext(GatsbyContext)
-  const {
-    additionalFee,
-    addProduct,
-    cart,
-    deliveryFee,
-    quantity,
-    removeProduct,
-    serviceFee,
-    subTotal,
-  } = globalData
+  const { additionalFee, cart, deliveryFee, serviceFee, subTotal } =
+    useContext(CartContext)
 
   const total = subTotal + deliveryFee + serviceFee + tips
 
@@ -29,7 +20,7 @@ export const CartScrollContainer = ({ display, toggleDisplay }) => {
         </Cart.ButtonClose>
       </Cart.BoxLittleScreen>
       <Cart.Title>Votre commande</Cart.Title>
-      {cart.map(({ id, price, quantity, title }) => {
+      {cart.map(({ id, price, title }) => {
         return (
           <Cart.BoxItem key={id}>
             <Cart.Text>{title}</Cart.Text>

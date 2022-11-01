@@ -1,44 +1,80 @@
-import React, { useContext, useEffect, useRef, useState } from "react"
-import { GatsbyContext } from "../context/context"
+import React, {
+  useContext,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "react"
+import { CartContext } from "../context/cart-context"
+import { ModalContext } from "../context/modal-context"
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import { Modal } from "../components/modal/index"
 import { CounterContainer } from "./counter"
 import { MdClose } from "react-icons/md"
 import supplementsData from "../utils/supplements.json"
 
-export const ModalContainer = ({ display, toggleModal }) => {
-  const globalData = useContext(GatsbyContext)
+export const ModalContainer = ({ display }) => {
+  const { addProductToCart } = useContext(CartContext)
+  const {
+    productShownOnModal: { id, image, price, recipe, slug, title, type },
+    toggleModal,
+  } = useContext(ModalContext)
+
+  // handle "total to add" shown on modal
+  const defaultState = {
+    total: 0,
+  }
+
+  const totalReducer = (state, action) => {
+    if (action.type === "ADD_ONE") {
+      const updatedTotalToAdd = state.total + action.price
+      return { total: updatedTotalToAdd }
+    }
+    if (action.type === "REMOVE_ONE") {
+      const updatedTotalToAdd = state.total - action.price
+      return { total: updatedTotalToAdd }
+    }
+    return defaultState
+  }
+
+  const [totalToAdd, dispatchTotalToAddAction] = useReducer(
+    totalReducer,
+    defaultState
+  )
+
+  const addPriceToTotalHandler = price => {
+    dispatchTotalToAddAction({ type: "ADD_ONE", price })
+  }
+  const removePriceToTotalHandler = price => {
+    dispatchTotalToAddAction({ type: "REMOVE_ONE", price })
+  }
+
+  useEffect(() => {
+    totalToAdd.total = 0
+  }, [toggleModal])
+
+  // handle banner on scroll
   const imageContainerRef = useRef()
   const imageContainerHeight = imageContainerRef.current
     ? imageContainerRef.current.getBoundingClientRect().height
     : null
-
-  const [counter, setCounter] = useState(1)
-  const [banner, setBanner] = useState(false)
-  const {
-    addProduct,
-    product: { id, image, price, recipe, slug, title, type },
-    removeProduct,
-    subTotal,
-  } = globalData
-
-  useEffect(() => {
-    setCounter(1)
-  }, [toggleModal])
+  const [bannerOnScroll, setBannerOnScroll] = useState(false)
 
   const handleScroll = event => {
     const scrollHeight = event.currentTarget.scrollTop
     if (scrollHeight > imageContainerHeight) {
-      setBanner(true)
+      setBannerOnScroll(true)
     } else {
-      setBanner(false)
+      setBannerOnScroll(false)
     }
   }
+
+  const priceToShow = price ? price + totalToAdd.total : totalToAdd.total
 
   return (
     <Modal display={display}>
       <Modal.Card>
-        <Modal.Banner display={`${banner ? "flex" : "none"}`}>
+        <Modal.Banner display={`${bannerOnScroll ? "flex" : "none"}`}>
           <Modal.Text>{title}</Modal.Text>
         </Modal.Banner>
         <Modal.Button onClick={toggleModal}>
@@ -76,6 +112,8 @@ export const ModalContainer = ({ display, toggleModal }) => {
                         price={price}
                         title={title}
                         toggleModal={toggleModal}
+                        onAddToTotalModal={addPriceToTotalHandler}
+                        onRemoveToTotalModal={removePriceToTotalHandler}
                       />
                       <Modal.Text>{title}</Modal.Text>
                     </Modal.DuoContainer>
@@ -88,18 +126,23 @@ export const ModalContainer = ({ display, toggleModal }) => {
         </Modal.Scroll>
         <Modal.Bottom>
           <CounterContainer
-            addProduct={addProduct}
-            counter={counter}
             id={id}
             price={price}
-            removeProduct={removeProduct}
-            setCounter={setCounter}
             title={title}
+            toggleModal={toggleModal}
+            onAddToTotalModal={addPriceToTotalHandler}
+            onRemoveToTotalModal={removePriceToTotalHandler}
           />
-          <Modal.ButtonLarge onClick={toggleModal}>
-            {/* Ajouter pour */}
-            {/* {(price * counter).toFixed(2)} */}
-            Total: {subTotal.toFixed(2)} €
+          <Modal.ButtonLarge
+            onClick={() => {
+              toggleModal()
+              addProductToCart({ title, price, id })
+            }}
+          >
+            {`
+            Ajouter pour
+            ${priceToShow.toFixed(2)}€
+            `}
           </Modal.ButtonLarge>
         </Modal.Bottom>
       </Modal.Card>

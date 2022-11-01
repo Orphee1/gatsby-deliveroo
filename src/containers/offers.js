@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useContext } from "react"
+import { ModalContext } from "../context/modal-context"
 import { Offers } from "../components"
 import {
   ArticleContainer,
@@ -9,7 +10,7 @@ import {
 import { useIsSSr } from "../utils/helpers"
 
 export const OffersContainer = ({ offers }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const { isModalOpen } = useContext(ModalContext)
 
   const isSsr = useIsSSr()
   if (isSsr) {
@@ -19,24 +20,15 @@ export const OffersContainer = ({ offers }) => {
     document.body.style.position = position
   }
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen)
-  }
-
   return (
     <Offers>
       <OfferStripeContainer offers={offers} />
       <Offers.ContainerOffers>
         {offers.map((offer, i) => {
-          return (
-            <ArticleContainer key={i} offer={offer} toggleModal={toggleModal} />
-          )
+          return <ArticleContainer key={i} offer={offer} />
         })}
       </Offers.ContainerOffers>
-      <ModalContainer
-        display={!isModalOpen ? "none" : ""}
-        toggleModal={toggleModal}
-      />
+      <ModalContainer display={!isModalOpen ? "none" : ""} />
       <CartContainer />
     </Offers>
   )

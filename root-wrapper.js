@@ -1,6 +1,6 @@
-import React, { Fragment } from "react"
+import React from "react"
 import { createGlobalStyle, ThemeProvider } from "styled-components"
-import { GatsbyProvider } from "./src/context/context"
+import { CartProvider } from "./src/context/cart-context"
 
 const theme = {
   tablet: "1279px",
@@ -204,7 +204,7 @@ export const wrapRootElement = ({ element }) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <GatsbyProvider>{element}</GatsbyProvider>
+      <CartProvider>{element}</CartProvider>
     </ThemeProvider>
   )
 }

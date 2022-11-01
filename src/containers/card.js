@@ -2,10 +2,9 @@ import React, { useContext } from "react"
 import { Card } from "../components"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { formatPrice } from "../utils/helpers"
-import { GatsbyContext } from "../context/context"
+import { ModalContext } from "../context/modal-context"
 
 export const CardContainer = ({
-  toggleModal,
   fixedImage,
   id,
   image,
@@ -16,30 +15,26 @@ export const CardContainer = ({
   title,
   type,
 }) => {
-  const { cart, setCart, setProduct } = useContext(GatsbyContext)
+  const { setProductShownOnModal, toggleModal } = useContext(ModalContext)
+
+  const handleClick = (id, image, price, recipe, slug, title, type) => {
+    toggleModal()
+    setProductShownOnModal({
+      id,
+      image,
+      price,
+      recipe,
+      slug,
+      title,
+      type,
+    })
+  }
 
   return (
     <Card
       key={id}
       onClick={() => {
-        toggleModal()
-        setProduct({
-          id,
-          image,
-          price,
-          recipe,
-          slug,
-          title,
-          type,
-        })
-        const newCart = [...cart]
-        newCart.push({
-          id,
-          title,
-          price,
-          quantity: 1,
-        })
-        setCart(newCart)
+        handleClick(id, image, price, recipe, slug, title, type)
       }}
     >
       <Card.Box>

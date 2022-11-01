@@ -3,7 +3,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import { Article } from "../components"
 import { CardContainer } from "."
 
-export const ArticleContainer = ({ offer, toggleModal }) => {
+export const ArticleContainer = ({ offer }) => {
   const { bigIcon, name, pitch, products } = offer
   return (
     <Article>
@@ -18,13 +18,7 @@ export const ArticleContainer = ({ offer, toggleModal }) => {
       </Article.Header>
       <Article.CardContainer>
         {products.map(product => {
-          return (
-            <CardContainer
-              key={product.id}
-              {...product}
-              toggleModal={toggleModal}
-            />
-          )
+          return <CardContainer key={product.id} {...product} />
         })}
       </Article.CardContainer>
     </Article>

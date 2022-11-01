@@ -2,6 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import { Layout } from "../components"
 import { HeroContainer, OffersContainer } from "../containers"
+import { ModalProvider } from "../context/modal-context"
 
 const Home = ({ data }) => {
   const { contentfulRestaurant: restau } = data
@@ -10,7 +11,9 @@ const Home = ({ data }) => {
   return (
     <Layout>
       <HeroContainer restau={restau} />
-      <OffersContainer offers={offers} />
+      <ModalProvider>
+        <OffersContainer offers={offers} />
+      </ModalProvider>
     </Layout>
   )
 }

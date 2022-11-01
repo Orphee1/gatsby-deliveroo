@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { Link } from "gatsby"
-import { GatsbyContext } from "../context/context"
+import { CartContext } from "../context/cart-context"
 import { deliveroo } from "../images"
 import { formatPrice } from "../utils/helpers"
 import { GiHamburgerMenu } from "react-icons/gi"
@@ -9,7 +9,7 @@ import { BiBasket } from "react-icons/bi"
 import { Navbar } from "../components"
 
 export function NavBarContainer() {
-  const globalData = useContext(GatsbyContext)
+  const globalData = useContext(CartContext)
   const { subTotal } = globalData
   return (
     <Navbar>

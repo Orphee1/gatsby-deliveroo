@@ -1,14 +1,12 @@
 import React, { useContext } from "react"
-import { GatsbyContext } from "../context/context"
+import { CartContext } from "../context/cart-context"
 import { Cart } from "../components"
 import { CartEmptyContainer, CartFullContainer } from "./index"
 
 export const CartContainer = () => {
-  const { cart } = useContext(GatsbyContext)
+  const { quantity } = useContext(CartContext)
 
   return (
-    <Cart>
-      {cart.length > 0 ? <CartFullContainer /> : <CartEmptyContainer />}
-    </Cart>
+    <Cart>{quantity > 0 ? <CartFullContainer /> : <CartEmptyContainer />}</Cart>
   )
 }

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect, createContext } from "react"
-import { GatsbyContext } from "../../context/context"
+import { CartContext } from "../../context/cart-context"
 import { FiMinusCircle, FiPlusCircle } from "react-icons/fi"
 
 import {
@@ -49,9 +49,39 @@ Modal.DuoContainer = function ModalDuoContainer({ children, ...restProps }) {
   return <DuoContainer>{children} </DuoContainer>
 }
 
-Modal.Icon = function ModalIcon({ children, id, title, price, toggleModal }) {
+Modal.Icon = function ModalIcon({
+  id,
+  title,
+  price,
+  toggleModal,
+  onAddToTotalModal,
+  onRemoveToTotalModal,
+}) {
   const { counter, setCounter } = useContext(CounterContext)
-  const { addProduct, removeProduct } = useContext(GatsbyContext)
+  const { addProductToCart, removeProductFromCart } = useContext(CartContext)
+
+  const handleAdd = (price, title, id) => {
+    setCounter(counter => counter + 1)
+    onAddToTotalModal(+price)
+    addProductToCart({
+      title,
+      price,
+      id,
+    })
+  }
+
+  const handleRemove = (price, title, id) => {
+    if (counter > 0) {
+      setCounter(counter => counter - 1)
+      onRemoveToTotalModal(+price)
+      removeProductFromCart({
+        title,
+        price,
+        id: id,
+      })
+    } else return
+  }
+
   useEffect(() => {
     setCounter(0)
   }, [toggleModal])
@@ -63,38 +93,21 @@ Modal.Icon = function ModalIcon({ children, id, title, price, toggleModal }) {
           <FiMinusCircle
             style={{ color: "#00ccbb", marginRight: "5px" }}
             onClick={() => {
-              if (counter > 0) {
-                setCounter(counter => counter - 1)
-                removeProduct({
-                  title: title,
-                  price: +price,
-                  id: id,
-                })
-              }
+              handleRemove(price, title, id)
             }}
           />
           <Text>{counter}</Text>
           <FiPlusCircle
             style={{ color: "#00ccbb", marginLeft: "5px" }}
             onClick={() => {
-              setCounter(counter => counter + 1)
-              addProduct({
-                title: title,
-                price: +price,
-                id: id,
-              })
+              handleAdd(price, title, id)
             }}
           />
         </>
       ) : (
         <FiPlusCircle
           onClick={() => {
-            setCounter(counter => counter + 1)
-            addProduct({
-              title: title,
-              price: +price,
-              id: id,
-            })
+            handleAdd(price, title, id)
           }}
         />
       )}
