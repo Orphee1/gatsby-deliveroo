@@ -2,8 +2,33 @@ import React, { useReducer } from "react"
 
 const CartContext = React.createContext()
 
+const fees = {
+  delivery: 1.99,
+  service: 0.79,
+  additional: 0.1,
+}
+
 const defaultState = {
   items: [],
+  quantity: 0,
+  subTotal: 0,
+  tips: 0,
+  total: 0,
+}
+
+const handleReduce = arr => {
+  const { updatedQuantity, updatedSubTotal } = arr.reduce(
+    (acc, product) => {
+      acc.updatedSubTotal += product.price * product.quantity
+      acc.updatedQuantity += product.quantity
+      return acc
+    },
+    {
+      updatedQuantity: 0,
+      updatedSubTotal: 0,
+    }
+  )
+  return { quant: updatedQuantity, total: updatedSubTotal }
 }
 
 const cartReducer = (state, action) => {
@@ -26,7 +51,15 @@ const cartReducer = (state, action) => {
       updatedItems = state.items.concat(newItem)
     }
 
-    return { items: updatedItems, totalAmount: state.totalAmount }
+    const updatedQuantityAndTotal = handleReduce(updatedItems)
+
+    return {
+      items: updatedItems,
+      quantity: updatedQuantityAndTotal.quant,
+      subTotal: updatedQuantityAndTotal.total,
+      tips: state.tips,
+      total: updatedQuantityAndTotal.total + state.tips,
+    }
   }
   if (action.type === "REMOVE_ITEM") {
     const existingCartItemIndex = state.items.findIndex(
@@ -44,8 +77,30 @@ const cartReducer = (state, action) => {
       updatedItems = [...state.items]
       updatedItems[existingCartItemIndex] = updatedItem
     }
-
-    return { items: updatedItems, totalAmount: state.totalAmount }
+    const updatedQuantityAndTotal = handleReduce(updatedItems)
+    return {
+      items: updatedItems,
+      quantity: updatedQuantityAndTotal.quant,
+      subTotal: updatedQuantityAndTotal.total,
+      tips: state.tips,
+      total: updatedQuantityAndTotal.total + state.tips,
+    }
+  }
+  if (action.type === "ADD_TIPS") {
+    const updatedTips = state.tips + 1
+    return { ...state, tips: updatedTips, total: state.subTotal + updatedTips }
+  }
+  if (action.type === "REMOVE_TIPS") {
+    if (state.tips > 0) {
+      const updatedTips = state.tips - 1
+      return {
+        ...state,
+        tips: updatedTips,
+        total: state.subTotal + updatedTips,
+      }
+    } else {
+      return state
+    }
   }
   return defaultState
 }
@@ -59,35 +114,32 @@ const CartProvider = ({ children }) => {
     dispatchCartAction({ type: "REMOVE_ITEM", item })
   }
 
+  const addTips = () => {
+    dispatchCartAction({ type: "ADD_TIPS" })
+  }
+  const removeTips = () => {
+    dispatchCartAction({ type: "REMOVE_TIPS" })
+  }
+
+  const total = cartState.total + fees.additional + fees.delivery + fees.service
+
   // console.log(cartState)
-
-  const { quantity, subTotal } = cartState.items.reduce(
-    (acc, product) => {
-      acc.subTotal += product.price * product.quantity
-      acc.quantity += product.quantity
-      return acc
-    },
-    {
-      quantity: 0,
-      subTotal: 0,
-    }
-  )
-
-  let deliveryFee = 1.99
-  let serviceFee = 0.79
-  let additionalFee = 0.1
 
   return (
     <CartContext.Provider
       value={{
-        additionalFee,
-        deliveryFee,
-        serviceFee,
+        additionalFee: fees.additional,
+        deliveryFee: fees.delivery,
+        serviceFee: fees.service,
         addProductToCart,
         removeProductFromCart,
-        subTotal,
-        quantity,
+        addTips,
+        removeTips,
         cart: cartState.items,
+        quantity: cartState.quantity,
+        subTotal: cartState.subTotal,
+        tips: cartState.tips,
+        total,
       }}
     >
       {children}

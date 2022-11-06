@@ -10,7 +10,6 @@ import { Navbar } from "./navbar"
 import { OfferStripe } from "./offerStripe"
 import { Offers } from "./offers/index"
 
-import StateCounter from "./StateCounter"
 export {
   Article,
   Card,
@@ -23,5 +22,4 @@ export {
   Navbar,
   Offers,
   OfferStripe,
-  StateCounter,
 }

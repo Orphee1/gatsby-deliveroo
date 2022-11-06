@@ -4,12 +4,13 @@ import React, {
   useReducer,
   useRef,
   useState,
+  useCallback,
 } from "react"
 import { CartContext } from "../context/cart-context"
 import { ModalContext } from "../context/modal-context"
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import { Modal } from "../components/modal/index"
-import { CounterContainer } from "./counter"
+import CounterContainer from "./counter"
 import { MdClose } from "react-icons/md"
 import supplementsData from "../utils/supplements.json"
 
@@ -42,12 +43,12 @@ export const ModalContainer = ({ display }) => {
     defaultState
   )
 
-  const addPriceToTotalHandler = price => {
+  const addPriceToTotalHandler = useCallback(price => {
     dispatchTotalToAddAction({ type: "ADD_ONE", price })
-  }
-  const removePriceToTotalHandler = price => {
+  }, [])
+  const removePriceToTotalHandler = useCallback(price => {
     dispatchTotalToAddAction({ type: "REMOVE_ONE", price })
-  }
+  }, [])
 
   useEffect(() => {
     totalToAdd.total = 0

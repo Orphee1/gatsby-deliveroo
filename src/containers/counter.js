@@ -3,7 +3,7 @@ import { CartContext } from "../context/cart-context"
 import { Counter } from "../components"
 import { FiMinusCircle, FiPlusCircle } from "react-icons/fi"
 
-export const CounterContainer = ({
+const CounterContainer = ({
   id,
   price,
   title,
@@ -64,3 +64,5 @@ export const CounterContainer = ({
     </Counter>
   )
 }
+
+export default React.memo(CounterContainer)

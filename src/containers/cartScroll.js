@@ -1,16 +1,25 @@
-import React, { useContext, useState } from "react"
+import React, { useContext } from "react"
 import { CartContext } from "../context/cart-context"
 import { Cart } from "../components"
 import { AiOutlineExclamationCircle } from "react-icons/ai"
+import { FiMinusCircle, FiPlusCircle } from "react-icons/fi"
 import { MdClose } from "react-icons/md"
 import { formatPrice } from "../utils/helpers"
 
 export const CartScrollContainer = ({ display, toggleDisplay }) => {
-  const [tips, setTips] = useState(0)
-  const { additionalFee, cart, deliveryFee, serviceFee, subTotal } =
-    useContext(CartContext)
-
-  const total = subTotal + deliveryFee + serviceFee + tips
+  const {
+    additionalFee,
+    cart,
+    deliveryFee,
+    serviceFee,
+    subTotal,
+    addTips,
+    removeTips,
+    tips,
+    total,
+    addProductToCart,
+    removeProductFromCart,
+  } = useContext(CartContext)
 
   return (
     <Cart.Scroll display={`${display ? "flex" : "none"}`}>
@@ -20,11 +29,35 @@ export const CartScrollContainer = ({ display, toggleDisplay }) => {
         </Cart.ButtonClose>
       </Cart.BoxLittleScreen>
       <Cart.Title>Votre commande</Cart.Title>
-      {cart.map(({ id, price, title }) => {
+      {cart.map(product => {
+        const { id, price, quantity, title } = product
         return (
           <Cart.BoxItem key={id}>
             <Cart.Text>{title}</Cart.Text>
-            <Cart.Text>{formatPrice(price)}</Cart.Text>
+            <Cart.Box>
+              <FiMinusCircle
+                style={{
+                  color: "#00ccbb",
+                  marginRight: "5px",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  removeProductFromCart(product)
+                }}
+              />
+              <Cart.Text>{quantity}</Cart.Text>
+              <FiPlusCircle
+                style={{
+                  color: "#00ccbb",
+                  marginLeft: "5px",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  addProductToCart(product)
+                }}
+              />
+              <Cart.Text>{formatPrice(price)}</Cart.Text>
+            </Cart.Box>
           </Cart.BoxItem>
         )
       })}
@@ -57,7 +90,26 @@ export const CartScrollContainer = ({ display, toggleDisplay }) => {
       <Cart.Line />
       <Cart.BoxItem>
         <Cart.Text>Pourboire livreur ou livreuse</Cart.Text>
-        <Cart.Text>{formatPrice(tips)}</Cart.Text>
+        <Cart.Box>
+          <Cart.Box>
+            <FiMinusCircle
+              style={{
+                color: "#00ccbb",
+                marginRight: "5px",
+                cursor: "pointer",
+              }}
+              onClick={removeTips}
+            />
+            <FiPlusCircle
+              style={{
+                color: "#00ccbb",
+                cursor: "pointer",
+              }}
+              onClick={addTips}
+            />
+          </Cart.Box>
+          <Cart.Text>{formatPrice(+tips)}</Cart.Text>
+        </Cart.Box>
       </Cart.BoxItem>
       <Cart.BoxItem>
         <Cart.Text f-w color="#2e3333">

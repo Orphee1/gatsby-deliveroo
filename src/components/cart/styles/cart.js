@@ -33,12 +33,10 @@ export const Bottom = styled.div`
 `
 
 export const Box = styled.div`
-  /* background: blue; */
   display: flex;
   align-items: center;
 `
 export const BoxItem = styled(Box)`
-  /* background: blue; */
   width: 100%;
   margin: 5px auto;
   justify-content: space-between;
