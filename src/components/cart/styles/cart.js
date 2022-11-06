@@ -1,7 +1,6 @@
 import styled from "styled-components/macro"
 
 export const Container = styled.aside`
-  /* background: green; */
   grid-column: 1/5;
   position: fixed;
   bottom: 0;
@@ -19,13 +18,33 @@ export const Container = styled.aside`
     margin-top: 2rem;
   }
 `
+export const Advert = styled.div`
+  height: auto;
+  padding: 8px;
+  border-radius: var(--radius);
+  background-color: var(--clr-green);
+  text-align: left;
+  p {
+    color: var(--clr-white);
+  }
+`
+
+export const Alert = styled.div`
+  width: 90%;
+  margin: 0 auto;
+  p {
+    color: ${({ color }) => color};
+  }
+`
+
 export const Bottom = styled.div`
   /* display: none; */
   position: absolute;
   bottom: 0px;
   z-index: 50;
-  height: 5rem;
+  height: auto;
   width: 100%;
+  padding: 5px 0;
   background: var(--clr-white);
   box-shadow: 0px -1px 4px 0px rgba(161, 160, 160, 0.4);
   -webkit-box-shadow: 0px -1px 4px 0px rgba(161, 160, 160, 0.4);
@@ -34,7 +53,7 @@ export const Bottom = styled.div`
 
 export const Box = styled.div`
   display: flex;
-  align-items: center;
+  align-items: ${({ baseline }) => (baseline ? "baseline" : "center")};
 `
 export const BoxItem = styled(Box)`
   width: 100%;
@@ -54,19 +73,17 @@ export const BoxLargeScreen = styled(Box)`
   display: none;
   @media only screen and (min-width: ${({ theme }) => theme.media2}) {
     display: flex;
+    flex-direction: column;
   }
 `
 export const BoxLittleScreen = styled(Box)`
   display: block;
-  /* z-index: 50; */
-
   @media only screen and (min-width: ${({ theme }) => theme.media2}) {
     display: none;
   }
 `
 
 export const BoxColumn = styled(Box)`
-  /* background: red; */
   height: ${({ height }) => height};
   padding: 10px;
   margin: auto;
@@ -77,7 +94,7 @@ export const BoxColumn = styled(Box)`
 export const Button = styled.div`
   height: 3rem;
   width: 90%;
-  margin: 1rem auto;
+  margin: 0.5rem auto;
   display: flex;
   align-items: center;
   justify-content: ${({ j_c }) => j_c || "center"};
@@ -116,20 +133,17 @@ export const Empty = styled.div`
   }
 `
 export const Full = styled.div`
-  /* background: purple; */
   position: relative;
   display: flex;
   width: 100%;
-  height: 25rem;
+  height: 26rem;
   @media only screen and (max-width: ${({ theme }) => theme.media2}) {
     height: auto;
   }
-  /* z-index: 30; */
 `
 export const Icon = styled.div`
   svg {
     color: var(--cl-grey-7);
-    /* color: red; */
     font-size: 3rem;
   }
 `

@@ -122,6 +122,8 @@ const CartProvider = ({ children }) => {
   }
 
   const total = cartState.total + fees.additional + fees.delivery + fees.service
+  const restToOffer = 12 - cartState.subTotal
+  const deliveryOffer = restToOffer > 0 ? false : true
 
   // console.log(cartState)
 
@@ -140,6 +142,8 @@ const CartProvider = ({ children }) => {
         subTotal: cartState.subTotal,
         tips: cartState.tips,
         total,
+        restToOffer,
+        offered: deliveryOffer,
       }}
     >
       {children}

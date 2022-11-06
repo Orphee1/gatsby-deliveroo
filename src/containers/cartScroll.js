@@ -9,15 +9,16 @@ import { formatPrice } from "../utils/helpers"
 export const CartScrollContainer = ({ display, toggleDisplay }) => {
   const {
     additionalFee,
+    addProductToCart,
+    addTips,
     cart,
     deliveryFee,
     serviceFee,
+    offered,
     subTotal,
-    addTips,
     removeTips,
     tips,
     total,
-    addProductToCart,
     removeProductFromCart,
   } = useContext(CartContext)
 
@@ -77,9 +78,18 @@ export const CartScrollContainer = ({ display, toggleDisplay }) => {
         <Cart.Text>Frais de livraison</Cart.Text>
         <Cart.Box>
           <AiOutlineExclamationCircle />
-          <Cart.Text>{formatPrice(deliveryFee)}</Cart.Text>
+          {offered ? (
+            <Cart.Text>Offert!</Cart.Text>
+          ) : (
+            <Cart.Text>{formatPrice(deliveryFee)}</Cart.Text>
+          )}
         </Cart.Box>
       </Cart.BoxItem>
+      {offered ? (
+        <Cart.Advert text="Avec la livraison offerte, vous économisez 1,99€" />
+      ) : (
+        <Cart.Advert text="Dépensez plus de 12€ pour bénéficier de la livraison offerte" />
+      )}
       <Cart.BoxItem>
         <Cart.Text>Frais de service</Cart.Text>
         <Cart.Box>

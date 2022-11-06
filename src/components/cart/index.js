@@ -1,6 +1,8 @@
 import React from "react"
 import {
   Container,
+  Advert,
+  Alert,
   Bottom,
   Box,
   BoxColumn,
@@ -17,9 +19,41 @@ import {
   Text,
   Title,
 } from "./styles/cart"
+import { AiOutlineExclamationCircle, AiFillCheckCircle } from "react-icons/ai"
+import { formatPrice } from "../../utils/helpers"
 
 export function Cart({ children }) {
   return <Container>{children} </Container>
+}
+
+Cart.Advert = function CartAdvert({ text, ...restProps }) {
+  return (
+    <Advert {...restProps}>
+      <p>{text}</p>
+    </Advert>
+  )
+}
+
+Cart.Alert = function CartAlert({ offered, restToOffer, ...restProps }) {
+  return (
+    <Alert {...restProps} color={`${offered ? "#2e3333" : "red"}`}>
+      {offered ? (
+        <Box baseline>
+          <AiFillCheckCircle style={{ color: "#01747e", marginRight: "5px" }} />
+          <p>Génial! La livraison vous est offerte</p>
+        </Box>
+      ) : (
+        <Box baseline>
+          <AiOutlineExclamationCircle
+            style={{ color: "red", marginRight: "5px" }}
+          />
+          <p>{`Plus que ${formatPrice(
+            restToOffer
+          )} pour obtenir la livraison offerte`}</p>
+        </Box>
+      )}
+    </Alert>
+  )
 }
 
 Cart.Bottom = function CartBottom({ children, ...restProps }) {
