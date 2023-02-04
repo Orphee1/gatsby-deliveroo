@@ -1,4 +1,5 @@
 import React, { Fragment } from "react"
+import { Link } from "gatsby"
 import { Cart } from "../components"
 import { formatPrice } from "../utils/helpers"
 
@@ -14,15 +15,19 @@ export const CartBottomContainer = ({
     <Cart.Bottom>
       <Cart.BoxLargeScreen>
         <Cart.Alert offered={offered} restToOffer={restToOffer} />
-        <Cart.Button active>
-          <Cart.Text>Finaliser la commande</Cart.Text>
-        </Cart.Button>
-      </Cart.BoxLargeScreen>
-      <Cart.BoxLittleScreen>
-        {display ? (
+        <Link to="/checkout">
           <Cart.Button active>
             <Cart.Text>Finaliser la commande</Cart.Text>
           </Cart.Button>
+        </Link>
+      </Cart.BoxLargeScreen>
+      <Cart.BoxLittleScreen>
+        {display ? (
+          <Link to="/checkout">
+            <Cart.Button active>
+              <Cart.Text>Finaliser la commande</Cart.Text>
+            </Cart.Button>
+          </Link>
         ) : (
           <Fragment>
             <Cart.Alert offered={offered} restToOffer={restToOffer} />

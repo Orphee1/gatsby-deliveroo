@@ -1,6 +1,7 @@
 import React, { useContext } from "react"
-import { Link } from "gatsby"
 import { CartContext } from "../context/cart-context"
+import { LoginContext } from "../context/login-context"
+import { Link } from "gatsby"
 import { deliveroo } from "../images"
 import { formatPrice } from "../utils/helpers"
 import { GiHamburgerMenu } from "react-icons/gi"
@@ -9,8 +10,8 @@ import { BiBasket } from "react-icons/bi"
 import { Navbar } from "../components"
 
 export function NavBarContainer() {
-  const globalData = useContext(CartContext)
-  const { subTotal } = globalData
+  const { subTotal } = useContext(CartContext)
+  const { isLoggedIn } = useContext(LoginContext)
   return (
     <Navbar>
       <Navbar.Row>
@@ -25,10 +26,19 @@ export function NavBarContainer() {
             </Navbar.Button>
           </Navbar.ListItem>
           <Navbar.ListItem>
-            <Navbar.Button>
-              <FaHome />
-              <Navbar.Text>Inscription ou connexion</Navbar.Text>
-            </Navbar.Button>
+            {isLoggedIn && (
+              <Navbar.Button>
+                <Navbar.Text>Devenir partenaire</Navbar.Text>
+              </Navbar.Button>
+            )}
+            {!isLoggedIn && (
+              <Link to="/signin">
+                <Navbar.Button>
+                  <FaHome />
+                  <Navbar.Text>Inscription ou connexion</Navbar.Text>
+                </Navbar.Button>
+              </Link>
+            )}
           </Navbar.ListItem>
           <Navbar.ListItem>
             <Navbar.Button>

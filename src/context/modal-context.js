@@ -7,18 +7,18 @@ const ModalProvider = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const toggleModal = () => {
-    setIsModalOpen(!isModalOpen)
+    setIsModalOpen(isModalOpen => !isModalOpen)
+  }
+
+  const modalContext = {
+    productShownOnModal,
+    setProductShownOnModal,
+    isModalOpen,
+    toggleModal,
   }
 
   return (
-    <ModalContext.Provider
-      value={{
-        productShownOnModal,
-        setProductShownOnModal,
-        isModalOpen,
-        toggleModal,
-      }}
-    >
+    <ModalContext.Provider value={modalContext}>
       {children}
     </ModalContext.Provider>
   )

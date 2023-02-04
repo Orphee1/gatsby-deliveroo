@@ -64,5 +64,5 @@ export const ListItem = styled.li`
 `
 
 export const Text = styled.span`
-  color: var(--clr-gey-1);
+  color: #2e3333;
 `

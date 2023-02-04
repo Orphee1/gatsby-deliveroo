@@ -1,5 +1,5 @@
 import React from "react"
-import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa"
+import { socialLinks } from "../../constants/social-links"
 import {
   Bottom,
   Box,
@@ -20,9 +20,14 @@ Footer.Bottom = () => {
   return (
     <Bottom>
       <Box>
-        <FaFacebook />
-        <FaTwitter />
-        <FaInstagram />
+        {socialLinks.map(social => {
+          const { id, el, url } = social
+          return (
+            <a key={id} href={url}>
+              {el}
+            </a>
+          )
+        })}
       </Box>
       <Text>© 2022 Deliveroo</Text>
     </Bottom>

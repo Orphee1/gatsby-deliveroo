@@ -5,8 +5,8 @@ import { IoIosBasket } from "react-icons/io"
 export const CartEmptyContainer = () => {
   return (
     <Cart.Empty>
-      <Cart.BoxColumn height="100%">
-        <Cart.BoxColumn>
+      <Cart.BoxColumn height="100%" padding>
+        <Cart.BoxColumn padding>
           <Cart.Icon>
             <IoIosBasket />
           </Cart.Icon>

@@ -126,28 +126,25 @@ const CartProvider = ({ children }) => {
   const deliveryOffer = restToOffer > 0 ? false : true
 
   // console.log(cartState)
+  const cartContext = {
+    additionalFee: fees.additional,
+    deliveryFee: fees.delivery,
+    serviceFee: fees.service,
+    addProductToCart,
+    removeProductFromCart,
+    addTips,
+    removeTips,
+    cart: cartState.items,
+    quantity: cartState.quantity,
+    subTotal: cartState.subTotal,
+    tips: cartState.tips,
+    total,
+    restToOffer,
+    offered: deliveryOffer,
+  }
 
   return (
-    <CartContext.Provider
-      value={{
-        additionalFee: fees.additional,
-        deliveryFee: fees.delivery,
-        serviceFee: fees.service,
-        addProductToCart,
-        removeProductFromCart,
-        addTips,
-        removeTips,
-        cart: cartState.items,
-        quantity: cartState.quantity,
-        subTotal: cartState.subTotal,
-        tips: cartState.tips,
-        total,
-        restToOffer,
-        offered: deliveryOffer,
-      }}
-    >
-      {children}
-    </CartContext.Provider>
+    <CartContext.Provider value={cartContext}>{children}</CartContext.Provider>
   )
 }
 

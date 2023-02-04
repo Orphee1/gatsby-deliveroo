@@ -1,4 +1,5 @@
 import { ArticleContainer } from "./article"
+import { BasketContainer } from "./basket"
 import { CardContainer } from "./card"
 import { CartContainer } from "./cart"
 import { CartBottomContainer } from "./cartBottom"
@@ -15,6 +16,7 @@ import { OfferStripeContainer } from "./offerStripe"
 
 export {
   ArticleContainer,
+  BasketContainer,
   CardContainer,
   CartContainer,
   CartBottomContainer,

@@ -2,18 +2,19 @@ import styled from "styled-components/macro"
 
 export const Box = styled.div`
   display: flex;
-  svg {
+  a {
     color: white;
     margin-left: 15px;
     font-size: 22px;
   }
-  svg:nth-of-type(1):hover {
+  a:nth-of-type(1):hover {
     color: #4967aa;
+    /* color: red; */
   }
-  svg:nth-of-type(2):hover {
+  a:nth-of-type(2):hover {
     color: #20a1f2;
   }
-  svg:nth-of-type(3):hover {
+  a:nth-of-type(3):hover {
     color: #f50a6a;
   }
 `

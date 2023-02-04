@@ -1,5 +1,6 @@
 import React from "react"
 import { createGlobalStyle, ThemeProvider } from "styled-components"
+import { LoginProvider } from "./src/context/login-context"
 import { CartProvider } from "./src/context/cart-context"
 
 const theme = {
@@ -84,6 +85,10 @@ li {
 a {
   text-decoration: none;
   font-size: 0.8rem; 
+}
+a:visited {
+ 
+  color: green;
 }
 
 h1 {
@@ -204,7 +209,9 @@ export const wrapRootElement = ({ element }) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <CartProvider>{element}</CartProvider>
+      <LoginProvider>
+        <CartProvider>{element}</CartProvider>
+      </LoginProvider>
     </ThemeProvider>
   )
 }

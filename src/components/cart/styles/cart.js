@@ -59,7 +59,6 @@ export const BoxItem = styled(Box)`
   width: 100%;
   margin: 5px auto;
   justify-content: space-between;
-
   span {
     color: var(--cl-grey-1);
   }
@@ -71,6 +70,9 @@ export const BoxItem = styled(Box)`
 
 export const BoxLargeScreen = styled(Box)`
   display: none;
+  a {
+    width: 100%;
+  }
   @media only screen and (min-width: ${({ theme }) => theme.media2}) {
     display: flex;
     flex-direction: column;
@@ -85,10 +87,11 @@ export const BoxLittleScreen = styled(Box)`
 
 export const BoxColumn = styled(Box)`
   height: ${({ height }) => height};
-  padding: 10px;
+  padding: ${({ padding }) => padding && "10px"};
   margin: auto;
   justify-content: space-between;
   flex-direction: column;
+  border-bottom: ${({ border }) => border && "1px solid #e2e4e4"};
 `
 
 export const Button = styled.div`
