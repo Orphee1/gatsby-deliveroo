@@ -3,7 +3,7 @@ import { CartContext } from "../context/cart-context"
 import { Cart } from "../components"
 import { CartBottomContainer, CartScrollContainer } from "./index"
 
-export const CartFullContainer = () => {
+export const CartFullContainer = ({ title }) => {
   const [display, setDisplay] = useState(false)
   const { quantity, subTotal, restToOffer, offered } = useContext(CartContext)
 
@@ -21,6 +21,7 @@ export const CartFullContainer = () => {
         subTotal={subTotal}
         restToOffer={restToOffer}
         offered={offered}
+        title={title}
       />
     </Cart.Full>
   )

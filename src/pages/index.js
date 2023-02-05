@@ -7,12 +7,13 @@ import { ModalProvider } from "../context/modal-context"
 const Home = ({ data }) => {
   const { contentfulRestaurant: restau } = data
   const offers = restau.productsOffers
+  const title = restau.title
 
   return (
     <Layout>
       <HeroContainer restau={restau} />
       <ModalProvider>
-        <OffersContainer offers={offers} />
+        <OffersContainer offers={offers} title={title} />
       </ModalProvider>
     </Layout>
   )

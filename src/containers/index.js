@@ -13,6 +13,7 @@ import { ModalContainer } from "./modal"
 import { NavBarContainer } from "./navbar"
 import { OffersContainer } from "./offers"
 import { OfferStripeContainer } from "./offerStripe"
+import { TitleContainer } from "./title"
 
 export {
   ArticleContainer,
@@ -30,4 +31,5 @@ export {
   NavBarContainer,
   OffersContainer,
   OfferStripeContainer,
+  TitleContainer,
 }

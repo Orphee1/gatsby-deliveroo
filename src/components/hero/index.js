@@ -62,6 +62,6 @@ Hero.TextBox = ({ children, ...restProps }) => {
   return <TextBox {...restProps}>{children}</TextBox>
 }
 
-Hero.Title = ({ children }) => {
-  return <Title>{children}</Title>
+Hero.Title = ({ children, ...restProps }) => {
+  return <Title {...restProps}>{children}</Title>
 }

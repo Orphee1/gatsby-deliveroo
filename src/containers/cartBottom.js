@@ -10,12 +10,15 @@ export const CartBottomContainer = ({
   toggleDisplay,
   quantity,
   subTotal,
+  title,
 }) => {
+  // console.log(title)
+
   return (
     <Cart.Bottom>
       <Cart.BoxLargeScreen>
         <Cart.Alert offered={offered} restToOffer={restToOffer} />
-        <Link to="/checkout">
+        <Link to="/checkout" state={{ title }}>
           <Cart.Button active>
             <Cart.Text>Finaliser la commande</Cart.Text>
           </Cart.Button>
@@ -23,7 +26,7 @@ export const CartBottomContainer = ({
       </Cart.BoxLargeScreen>
       <Cart.BoxLittleScreen>
         {display ? (
-          <Link to="/checkout">
+          <Link to={`/checkout/${title}`}>
             <Cart.Button active>
               <Cart.Text>Finaliser la commande</Cart.Text>
             </Cart.Button>

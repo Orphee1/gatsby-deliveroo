@@ -14,8 +14,6 @@ export const HeroContainer = ({ restau }) => {
     // location,
     meal,
     rate,
-    // schedule,
-    // sector,
     title,
   } = restau
 
@@ -29,8 +27,8 @@ export const HeroContainer = ({ restau }) => {
         </Hero.ImageContainer>
         <Hero.InfoContainer>
           <Hero.Article>
-            <Hero.Title>{title}</Hero.Title>
-            <Hero.Text>25 - 40 mn • {meal}</Hero.Text>
+            <Hero.Title opacity="0.8">{title}</Hero.Title>
+            <Hero.Text>25 - 40 min • {meal}</Hero.Text>
             <Hero.TextBox>
               <Hero.Icon mr="10px" color="#01747e">
                 <FaStar />
@@ -39,7 +37,7 @@ export const HeroContainer = ({ restau }) => {
               <Hero.Text>(500+) •</Hero.Text>
               <Hero.Text>À 1.01km •</Hero.Text>
               <Hero.Text>Livraison offerte •</Hero.Text>
-              <Hero.Text>10,00€ minimum</Hero.Text>
+              <Hero.Text>12,00 € minimum</Hero.Text>
             </Hero.TextBox>
             <Hero.Button width="225px">
               <Hero.Icon width="26px" height="26px" mr="10px" color="#aaacac">

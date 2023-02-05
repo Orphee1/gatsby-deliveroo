@@ -98,7 +98,7 @@ h1 {
   font-family: "Stratos", sans-serif;
   font-weight: 700;
   font-style: normal;
-  opacity: 0.8; 
+  
 }
 h2,
 h3,

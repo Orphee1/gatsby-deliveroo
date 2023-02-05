@@ -1,12 +1,17 @@
 import React from "react"
 import { Layout } from "../components"
+import { BasketContainer, TitleContainer } from "../containers"
 import styled from "styled-components"
-import { BasketContainer } from "../containers"
 
-const Checkout = () => {
+const Checkout = ({ location }) => {
+  const title = location.state
+    ? location.state.title
+    : "Oops! How did you come here?"
+
   return (
     <Layout>
       <Wrapper>
+        <TitleContainer title={title} />
         <BasketContainer />
       </Wrapper>
     </Layout>
@@ -26,6 +31,5 @@ const Wrapper = styled.main`
   grid-gap: 1rem;
 
   @media (max-width: ${({ theme }) => theme.media2}) {
-    background: red;
   }
 `

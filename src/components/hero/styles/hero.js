@@ -99,6 +99,10 @@ export const TextBox = styled.div`
   display: flex;
   flex-direction: ${props => props.layout || "row"};
   justify-content: left;
+  align-items: center;
 `
 
-export const Title = styled.h1``
+export const Title = styled.h1`
+  color: ${({ color }) => color};
+  opacity: ${({ opacity }) => opacity};
+`

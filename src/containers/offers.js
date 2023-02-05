@@ -9,7 +9,7 @@ import {
 } from "./index"
 import { useIsSSr } from "../utils/helpers"
 
-export const OffersContainer = ({ offers }) => {
+export const OffersContainer = ({ offers, title }) => {
   const { isModalOpen } = useContext(ModalContext)
 
   const isSsr = useIsSSr()
@@ -29,7 +29,7 @@ export const OffersContainer = ({ offers }) => {
         })}
       </Offers.ContainerOffers>
       <ModalContainer display={!isModalOpen ? "none" : ""} />
-      <CartContainer />
+      <CartContainer title={title} />
     </Offers>
   )
 }

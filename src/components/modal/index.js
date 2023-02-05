@@ -84,7 +84,7 @@ Modal.Icon = function ModalIcon({
 
   useEffect(() => {
     setCounter(0)
-  }, [toggleModal])
+  }, [toggleModal, setCounter])
 
   return (
     <Icon>
