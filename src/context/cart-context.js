@@ -107,6 +107,7 @@ const cartReducer = (state, action) => {
 
 const CartProvider = ({ children }) => {
   const [cartState, dispatchCartAction] = useReducer(cartReducer, defaultState)
+  console.log(cartState)
   const addProductToCart = item => {
     dispatchCartAction({ type: "ADD_ITEM", item })
   }

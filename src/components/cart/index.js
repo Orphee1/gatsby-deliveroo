@@ -17,6 +17,7 @@ import {
   Line,
   Scroll,
   Text,
+  TextStrike,
   Title,
 } from "./styles/cart"
 import { AiOutlineExclamationCircle, AiFillCheckCircle } from "react-icons/ai"
@@ -113,6 +114,10 @@ Cart.Scroll = function CartScroll({ children, ...restProps }) {
 
 Cart.Text = function CartText({ children, ...restProps }) {
   return <Text {...restProps}> {children} </Text>
+}
+
+Cart.TextStrike = function CartText({ children, ...restProps }) {
+  return <TextStrike {...restProps}> {children} </TextStrike>
 }
 
 Cart.Title = function CartTitle({ children, ...restProps }) {

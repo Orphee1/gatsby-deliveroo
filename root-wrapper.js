@@ -108,7 +108,7 @@ p {
   margin-bottom: 0.3rem;
 }
 
-span,
+s, span,
 a {
   font-family: "IBM Plex Sans", sans-serif;
 }

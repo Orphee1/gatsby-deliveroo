@@ -92,6 +92,7 @@ export const BoxColumn = styled(Box)`
   justify-content: space-between;
   flex-direction: column;
   border-bottom: ${({ border }) => border && "1px solid #e2e4e4"};
+  overflow: scroll;
 `
 
 export const Button = styled.div`
@@ -187,6 +188,15 @@ export const Text = styled.span`
   border-radius: var(--radius);
   font-weight: ${({ f_w }) => (f_w ? "bold" : "")};
 `
+export const TextStrike = styled.s`
+  color: var(--cl-grey-1);
+  font-size: 1rem;
+  background: ${({ bg_clr }) => bg_clr};
+  padding: 0 5px;
+  border-radius: var(--radius);
+  font-weight: ${({ f_w }) => (f_w ? "bold" : "")};
+`
+
 export const Title = styled.h3`
   color: ${({ color }) => color};
 `
