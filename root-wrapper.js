@@ -1,6 +1,5 @@
 import React from "react"
 import { createGlobalStyle, ThemeProvider } from "styled-components"
-import { LoginProvider } from "./src/context/login-context"
 import { CartProvider } from "./src/context/cart-context"
 import { Auth0Provider } from "@auth0/auth0-react"
 
@@ -217,9 +216,7 @@ export const wrapRootElement = ({ element }) => {
     >
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <LoginProvider>
-          <CartProvider>{element}</CartProvider>
-        </LoginProvider>
+        <CartProvider>{element}</CartProvider>
       </ThemeProvider>
     </Auth0Provider>
   )

@@ -1,11 +1,9 @@
-import React, { useContext } from "react"
-import { LoginContext } from "../context/login-context"
+import React from "react"
 import { Layout } from "../components"
 import { BasketContainer, LoginContainer, TitleContainer } from "../containers"
 import styled from "styled-components"
 
 const Checkout = ({ location }) => {
-  const { isLoggedIn } = useContext(LoginContext)
   const title = location.state
     ? location.state.title
     : "Oops! How did you come here?"
@@ -14,7 +12,10 @@ const Checkout = ({ location }) => {
     <Layout>
       <Wrapper>
         <TitleContainer title={title} />
-        <ModuleContainer>{!isLoggedIn && <LoginContainer />}</ModuleContainer>
+        <ModuleContainer>
+          {" "}
+          <LoginContainer />
+        </ModuleContainer>
         <BasketContainer />
       </Wrapper>
     </Layout>
