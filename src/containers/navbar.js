@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
+import { useAuth0 } from "@auth0/auth0-react"
 import { CartContext } from "../context/cart-context"
-import { LoginContext } from "../context/login-context"
 import { Link } from "gatsby"
 import { deliveroo } from "../images"
 import { formatPrice } from "../utils/helpers"
@@ -11,7 +11,10 @@ import { Navbar } from "../components"
 
 export function NavBarContainer() {
   const { subTotal } = useContext(CartContext)
-  const { isLoggedIn } = useContext(LoginContext)
+  const { isAuthenticated, isLoading, user } = useAuth0()
+
+  !isLoading && isAuthenticated && console.log(user)
+
   return (
     <Navbar>
       <Navbar.Row>
@@ -26,12 +29,13 @@ export function NavBarContainer() {
             </Navbar.Button>
           </Navbar.ListItem>
           <Navbar.ListItem>
-            {isLoggedIn && (
+            {isAuthenticated && (
               <Navbar.Button>
-                <Navbar.Text>Devenir partenaire</Navbar.Text>
+                {/* <Navbar.Text>Devenir partenaire</Navbar.Text> */}
+                <Navbar.Text>{user.nickname}</Navbar.Text>
               </Navbar.Button>
             )}
-            {!isLoggedIn && (
+            {!isAuthenticated && (
               <Link to="/signin">
                 <Navbar.Button>
                   <FaHome />

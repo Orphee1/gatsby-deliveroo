@@ -79,15 +79,14 @@ export const BasketContainer = () => {
 }
 
 const Wrapper = styled.aside`
+  grid-row: 1/3;
   grid-column: 3/4;
+  /* align-self: start; */
   background: var(--clr-white);
   width: 100%;
-  height: 34rem;
+  height: 30rem;
   border-radius: var(--radius);
-  /* display: flex;
-  flex-direction: column; */
   padding: 10px;
-  /* overflow: scroll; */
   @media (max-width: ${({ theme }) => theme.media2}) {
     display: none;
   }

@@ -9,6 +9,7 @@ import { CartScrollContainer } from "./cartScroll"
 import CounterContainer from "./counter"
 import { FooterContainer } from "./footer"
 import { HeroContainer } from "./hero"
+import { LoginContainer } from "./login"
 import { ModalContainer } from "./modal"
 import { NavBarContainer } from "./navbar"
 import { OffersContainer } from "./offers"
@@ -27,6 +28,7 @@ export {
   CounterContainer,
   FooterContainer,
   HeroContainer,
+  LoginContainer,
   ModalContainer,
   NavBarContainer,
   OffersContainer,

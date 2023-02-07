@@ -2,6 +2,7 @@ import React from "react"
 import { createGlobalStyle, ThemeProvider } from "styled-components"
 import { LoginProvider } from "./src/context/login-context"
 import { CartProvider } from "./src/context/cart-context"
+import { Auth0Provider } from "@auth0/auth0-react"
 
 const theme = {
   tablet: "1279px",
@@ -207,11 +208,19 @@ Debug
 
 export const wrapRootElement = ({ element }) => {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <LoginProvider>
-        <CartProvider>{element}</CartProvider>
-      </LoginProvider>
-    </ThemeProvider>
+    <Auth0Provider
+      domain={process.env.AUTH0_DOMAIN}
+      clientId={process.env.AUTH0_CLIENTID}
+      authorizationParams={{
+        redirect_uri: process.env.AUTH0_CALLBACK,
+      }}
+    >
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <LoginProvider>
+          <CartProvider>{element}</CartProvider>
+        </LoginProvider>
+      </ThemeProvider>
+    </Auth0Provider>
   )
 }

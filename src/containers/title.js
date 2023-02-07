@@ -17,4 +17,5 @@ export const TitleContainer = ({ title }) => {
 
 const Wrapper = styled.div`
   grid-column: 2/3;
+  grid-row: 1/2;
 `

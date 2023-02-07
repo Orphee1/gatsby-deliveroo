@@ -1,24 +1,31 @@
-import React, { useContext } from "react"
-import { LoginContext } from "../context/login-context"
+import React from "react"
+import { useAuth0 } from "@auth0/auth0-react"
+import { LoginContainer } from "../containers/login"
 import { Layout } from "../components"
 import styled from "styled-components"
 
 const Signin = () => {
-  const { isLoggedIn, handleIsLogin } = useContext(LoginContext)
+  const { isAuthenticated, isLoading, loginWithRedirect, logout } = useAuth0()
 
-  const handleClick = () => {
-    handleIsLogin()
+  const handleConnectClick = () => {
+    loginWithRedirect()
+  }
+
+  const handleDisconnectClick = () => {
+    logout({ logoutParams: { returnTo: process.env.AUTH0_CALLBACK } })
   }
 
   return (
     <Layout>
       <Wrapper>
-        <h1>Hello from Signin Page</h1>
-        {isLoggedIn ? (
-          <Button onClick={handleClick}>Se déconnecter</Button>
-        ) : (
-          <Button onClick={handleClick}>Se connecter</Button>
+        {!isAuthenticated && (
+          <Button onClick={handleConnectClick}>Se Connecter</Button>
         )}
+        {isAuthenticated && (
+          <Button onClick={handleDisconnectClick}>Se Déconnecter</Button>
+        )}
+
+        <LoginContainer />
       </Wrapper>
     </Layout>
   )
@@ -29,7 +36,9 @@ export default Signin
 const Wrapper = styled.main`
   /* min-height: 70vh; */
   height: auto;
-  margin: 0;
+  width: 40%;
+  padding: 1rem;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
