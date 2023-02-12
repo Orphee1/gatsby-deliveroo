@@ -1,7 +1,10 @@
 import React from "react"
+import { useIsSSr } from "./src/utils/helpers"
 import { createGlobalStyle, ThemeProvider } from "styled-components"
 import { CartProvider } from "./src/context/cart-context"
 import { Auth0Provider } from "@auth0/auth0-react"
+
+const isSsr = useIsSSr()
 
 const theme = {
   tablet: "1279px",
@@ -213,7 +216,8 @@ export const wrapRootElement = ({ element }) => {
       // clientId={process.env.AUTH0_CLIENTID}
       clientId="UxZymrgIcWpZq4DpjRTL3EQiRJiW44Qm"
       authorizationParams={{
-        redirect_uri: process.env.AUTH0_CALLBACK,
+        // redirect_uri: process.env.AUTH0_CALLBACK,
+        redirect_uri: !isSsr && window.location.origin,
       }}
     >
       <ThemeProvider theme={theme}>
