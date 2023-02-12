@@ -210,7 +210,8 @@ export const wrapRootElement = ({ element }) => {
     <Auth0Provider
       // domain={process.env.AUTH0_DOMAIN}
       domain="dev-a2uey52c.eu.auth0.com"
-      clientId={process.env.AUTH0_CLIENTID}
+      // clientId={process.env.AUTH0_CLIENTID}
+      clientId="UxZymrgIcWpZq4DpjRTL3EQiRJiW44Qm"
       authorizationParams={{
         redirect_uri: process.env.AUTH0_CALLBACK,
       }}
