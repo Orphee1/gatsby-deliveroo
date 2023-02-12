@@ -4,8 +4,6 @@ import { createGlobalStyle, ThemeProvider } from "styled-components"
 import { CartProvider } from "./src/context/cart-context"
 import { Auth0Provider } from "@auth0/auth0-react"
 
-console.log(isSsr)
-
 const theme = {
   tablet: "1279px",
   media2: "959px",
