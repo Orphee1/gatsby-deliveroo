@@ -209,10 +209,11 @@ Debug
 export const wrapRootElement = ({ element }) => {
   return (
     <Auth0Provider
-      domain="dev-a2uey52c.eu.auth0.com"
-      clientId="UxZymrgIcWpZq4DpjRTL3EQiRJiW44Qm"
+      // domain="dev-a2uey52c.eu.auth0.com"
+      domain={process.env.AUTHO_DOMAIN}
+      clientId={process.env.AUTHO_CLIENTID}
       authorizationParams={{
-        redirect_uri: "https://hl-gatsby-deliveroo.netlify.app/",
+        redirect_uri: process.env.AUTHO_CALLBACK,
       }}
     >
       <ThemeProvider theme={theme}>
